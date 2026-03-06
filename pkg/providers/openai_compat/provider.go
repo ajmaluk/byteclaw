@@ -11,6 +11,7 @@ import (
 	"net/url"
 	"strings"
 	"time"
+	"sync"
 
 	"github.com/ajmaluk/byteclaw/pkg/providers/protocoltypes"
 )
@@ -33,11 +34,15 @@ type Provider struct {
 	apiBase        string
 	maxTokensField string // Field name for max tokens (e.g., "max_completion_tokens" for o1/glm models)
 	httpClient     *http.Client
+	rpm            int
+	minInterval    time.Duration
+	lastRequest    time.Time
+	mu             sync.Mutex
 }
 
 type Option func(*Provider)
 
-const defaultRequestTimeout = 120 * time.Second
+const defaultRequestTimeout = 60 * time.Second
 
 func WithMaxTokensField(maxTokensField string) Option {
 	return func(p *Provider) {
@@ -49,6 +54,15 @@ func WithRequestTimeout(timeout time.Duration) Option {
 	return func(p *Provider) {
 		if timeout > 0 {
 			p.httpClient.Timeout = timeout
+		}
+	}
+}
+
+func WithRPM(rpm int) Option {
+	return func(p *Provider) {
+		if rpm > 0 {
+			p.rpm = rpm
+			p.minInterval = time.Minute / time.Duration(rpm)
 		}
 	}
 }
@@ -108,6 +122,30 @@ func (p *Provider) Chat(
 	model string,
 	options map[string]any,
 ) (*LLMResponse, error) {
+	if p.rpm > 0 && p.minInterval > 0 {
+		p.mu.Lock()
+		now := time.Now()
+		wait := time.Duration(0)
+		if !p.lastRequest.IsZero() {
+			elapsed := now.Sub(p.lastRequest)
+			if elapsed < p.minInterval {
+				wait = p.minInterval - elapsed
+			}
+		}
+		if wait > 0 {
+			p.mu.Unlock()
+			timer := time.NewTimer(wait)
+			select {
+			case <-timer.C:
+			case <-ctx.Done():
+				timer.Stop()
+				return nil, ctx.Err()
+			}
+			p.mu.Lock()
+		}
+		p.lastRequest = time.Now()
+		p.mu.Unlock()
+	}
 	if p.apiBase == "" {
 		return nil, fmt.Errorf("API base not configured")
 	}
