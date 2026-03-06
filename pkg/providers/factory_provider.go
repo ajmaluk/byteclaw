@@ -8,6 +8,8 @@ package providers
 import (
 	"fmt"
 	"strings"
+	"os"
+	"strconv"
 
 	"github.com/ajmaluk/byteclaw/pkg/config"
 )
@@ -88,13 +90,21 @@ func CreateProviderFromConfig(cfg *config.ModelConfig) (LLMProvider, string, err
 		if rt == 0 {
 			rt = 60
 		}
+		rpm := cfg.RPM
+		if rpm == 0 {
+			if v := strings.TrimSpace(os.Getenv("PICOCLAW_PROVIDERS_DEFAULT_RPM")); v != "" {
+				if n, err := strconv.Atoi(v); err == nil && n > 0 {
+					rpm = n
+				}
+			}
+		}
 		return NewHTTPProviderWithOptions(
 			cfg.APIKey,
 			apiBase,
 			cfg.Proxy,
 			cfg.MaxTokensField,
 			rt,
-			cfg.RPM,
+			rpm,
 		), modelID, nil
 
 	case "litellm", "openrouter", "groq", "zhipu", "gemini", "nvidia",
@@ -112,13 +122,21 @@ func CreateProviderFromConfig(cfg *config.ModelConfig) (LLMProvider, string, err
 		if rt == 0 {
 			rt = 60
 		}
+		rpm := cfg.RPM
+		if rpm == 0 {
+			if v := strings.TrimSpace(os.Getenv("PICOCLAW_PROVIDERS_DEFAULT_RPM")); v != "" {
+				if n, err := strconv.Atoi(v); err == nil && n > 0 {
+					rpm = n
+				}
+			}
+		}
 		return NewHTTPProviderWithOptions(
 			cfg.APIKey,
 			apiBase,
 			cfg.Proxy,
 			cfg.MaxTokensField,
 			rt,
-			cfg.RPM,
+			rpm,
 		), modelID, nil
 
 	case "anthropic":
@@ -142,13 +160,21 @@ func CreateProviderFromConfig(cfg *config.ModelConfig) (LLMProvider, string, err
 		if rt == 0 {
 			rt = 60
 		}
+		rpm := cfg.RPM
+		if rpm == 0 {
+			if v := strings.TrimSpace(os.Getenv("PICOCLAW_PROVIDERS_DEFAULT_RPM")); v != "" {
+				if n, err := strconv.Atoi(v); err == nil && n > 0 {
+					rpm = n
+				}
+			}
+		}
 		return NewHTTPProviderWithOptions(
 			cfg.APIKey,
 			apiBase,
 			cfg.Proxy,
 			cfg.MaxTokensField,
 			rt,
-			cfg.RPM,
+			rpm,
 		), modelID, nil
 
 	case "antigravity":

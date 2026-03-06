@@ -43,7 +43,17 @@ func (s *appState) modelMenu() tview.Primitive {
 		if desc == "" {
 			desc = "api_key required"
 		}
+		meta := []string{}
+		if model.RPM > 0 {
+			meta = append(meta, fmt.Sprintf("rpm:%d", model.RPM))
+		}
+		if model.RequestTimeout > 0 {
+			meta = append(meta, fmt.Sprintf("timeout:%ds", model.RequestTimeout))
+		}
 		label := fmt.Sprintf("%s (%s)", model.ModelName, model.Model)
+		if len(meta) > 0 {
+			label = label + " [" + strings.Join(meta, " • ") + "]"
+		}
 		if model.ModelName == currentModel && currentModel != "" {
 			label = "* " + label
 		}
@@ -216,7 +226,17 @@ func modelStatusColor(valid bool, selected bool) *tcell.Color {
 func refreshModelMenu(menu *Menu, currentModel string, models []picoclawconfig.ModelConfig) {
 	for i, model := range models {
 		row := i + 1
+		meta := []string{}
+		if model.RPM > 0 {
+			meta = append(meta, fmt.Sprintf("rpm:%d", model.RPM))
+		}
+		if model.RequestTimeout > 0 {
+			meta = append(meta, fmt.Sprintf("timeout:%ds", model.RequestTimeout))
+		}
 		label := fmt.Sprintf("%s (%s)", model.ModelName, model.Model)
+		if len(meta) > 0 {
+			label = label + " [" + strings.Join(meta, " • ") + "]"
+		}
 		isValid := isModelValid(model)
 		if model.ModelName == currentModel && currentModel != "" {
 			label = "* " + label
