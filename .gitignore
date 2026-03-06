@@ -47,3 +47,6 @@ dist/
 
 # Windows Application Icon/Resource
 *.syso
+ 
+# Local proxy script (do not publish)
+proxy.js

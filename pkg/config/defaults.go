@@ -329,6 +329,13 @@ func DefaultConfig() *Config {
 				APIBase:   "http://localhost:8000/v1",
 				APIKey:    "",
 			},
+			// External Text Proxy (optional) - set BYTECLAW_TEXT_PROXY_URL env
+			{
+				ModelName: "external-text-proxy",
+				Model:     "openai/custom-proxy",
+				APIBase:   os.Getenv("BYTECLAW_TEXT_PROXY_URL"),
+				APIKey:    "",
+			},
 		},
 		Gateway: GatewayConfig{
 			Host: "127.0.0.1",
