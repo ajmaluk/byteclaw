@@ -1,7 +1,9 @@
 <div align="center">
-<img src="assets/logo.png" alt="ByteClaw" width="512">
+  <img src="assets/banner.png" alt="ByteClaw Banner" width="100%">
+  <br>
+  <img src="assets/logo.png" alt="ByteClaw Logo" width="256">
 
-<h1>ByteClaw : Assistant IA ultra-efficace en Go</h1>
+  <h1>ByteClaw : Assistant IA ultra-efficace en Go</h1>
 
   <h3>Matériel à 10$ · 10 Mo de RAM · Démarrage en 1s · 皮皮虾，我们走！</h3>
 
@@ -13,7 +15,7 @@
     <a href="https://github.com/ajmaluk/byteclaw"><img src="https://img.shields.io/badge/GitHub-ajmaluk%2Fbyteclaw-black?style=flat&logo=github&logoColor=white" alt="GitHub"></a>
   </p>
 
- [中文](README.zh.md) | [日本語](README.ja.md) | [Português](README.pt-br.md) | [Tiếng Việt](README.vi.md) | [English](README.md) | **Français**
+[中文](README.zh.md) | [日本語](README.ja.md) | [Português](README.pt-br.md) | [Tiếng Việt](README.vi.md) | [English](README.md) | **Français** | [हिन्दी](README.hi.md) | [മലയാളം](README.ml.md)
 </div>
 
 ---
@@ -118,15 +120,7 @@ Puis suivez les instructions de la section « Démarrage Rapide » pour terminer
 
 <img src="assets/termux.png" alt="ByteClaw" width="512">
 
-### 🐜 Déploiement Innovant à Faible Empreinte
 
-ByteClaw peut être déployé sur pratiquement n'importe quel appareil Linux !
-
-- 9,9$ [LicheeRV-Nano](https://www.aliexpress.com/item/1005006519668532.html) version E (Ethernet) ou W (WiFi6), pour un Assistant Domotique Minimaliste
-- 30~50$ [NanoKVM](https://www.aliexpress.com/item/1005007369816019.html), ou 100$ [NanoKVM-Pro](https://www.aliexpress.com/item/1005010048471263.html) pour la Maintenance Automatisée de Serveurs
-- 50$ [MaixCAM](https://www.aliexpress.com/item/1005008053333693.html) ou 100$ [MaixCAM2](https://www.kickstarter.com/projects/zepan/maixcam2-build-your-next-gen-4k-ai-camera) pour la Surveillance Intelligente
-
-<https://private-user-images.githubusercontent.com/83055338/547056448-e7b031ff-d6f5-4468-bcca-5726b6fecb5c.mp4>
 
 🌟 Encore plus de scénarios de déploiement vous attendent !
 

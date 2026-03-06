@@ -66,6 +66,9 @@ func locateByteClaw() string {
 	return "byteclaw"
 }
 
+// runningGatewayPID tracks the PID of the currently running gateway process locally launched.
+var runningGatewayPID = 0
+
 func handleStartGateway(w http.ResponseWriter, r *http.Request) {
 	execPath := locateByteClaw()
 	cmd := exec.Command(execPath, "gateway")
@@ -93,6 +96,8 @@ func handleStartGateway(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	runningGatewayPID = cmd.Process.Pid
+
 	// Read stdout and stderr into the log buffer
 	go scanPipe(stdoutPipe, gatewayLogs)
 	go scanPipe(stderrPipe, gatewayLogs)
@@ -101,6 +106,10 @@ func handleStartGateway(w http.ResponseWriter, r *http.Request) {
 	go func() {
 		if err := cmd.Wait(); err != nil {
 			log.Printf("Gateway process exited: %v\n", err)
+		}
+		// Reset PID since it exited
+		if runningGatewayPID == cmd.Process.Pid {
+			runningGatewayPID = 0
 		}
 	}()
 
@@ -125,19 +134,26 @@ func scanPipe(r io.Reader, buf *LogBuffer) {
 
 func handleStopGateway(w http.ResponseWriter, r *http.Request) {
 	var err error
-	if runtime.GOOS == "windows" {
-		// Kill via taskkill finding byteclaw.exe (though it might kill this config tool if it's named byteclaw-launcher.exe...? No, /IM does exact match usually, but just to be safe let's stop exactly byteclaw.exe)
-		// Alternatively, we use powershell to kill processes with commandline containing 'gateway'
-		psCmd := `Get-WmiObject Win32_Process | Where-Object { $_.CommandLine -match 'byteclaw.*gateway' } | ForEach-Object { Stop-Process $_.ProcessId -Force }`
-		err = exec.Command("powershell", "-Command", psCmd).Run()
+
+	if runningGatewayPID != 0 {
+		process, findErr := os.FindProcess(runningGatewayPID)
+		if findErr != nil {
+			err = fmt.Errorf("could not find process %d: %v", runningGatewayPID, findErr)
+		} else {
+			err = process.Kill()
+		}
 	} else {
-		// Linux/macOS
-		err = exec.Command("pkill", "-f", "byteclaw gateway").Run()
+		// Fallback for processes not started by this instance of the launcher
+		if runtime.GOOS == "windows" {
+			psCmd := `Get-WmiObject Win32_Process | Where-Object { $_.CommandLine -match 'byteclaw.*gateway' } | ForEach-Object { Stop-Process $_.ProcessId -Force }`
+			err = exec.Command("powershell", "-Command", psCmd).Run()
+		} else {
+			err = exec.Command("pkill", "-f", "byteclaw gateway").Run()
+		}
 	}
 
 	if err != nil {
 		log.Printf("Warning: Failed to stop gateway (perhaps not running?): %v\n", err)
-		// We still return 200 OK because pkill returns an error if no process was found
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(map[string]any{
 			"status": "ok", // or "not_found"
@@ -147,6 +163,7 @@ func handleStopGateway(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	runningGatewayPID = 0
 	log.Printf("Stopped byteclaw gateway processes.\n")
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{

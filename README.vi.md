@@ -1,7 +1,9 @@
 <div align="center">
-<img src="assets/logo.png" alt="ByteClaw" width="512">
+  <img src="assets/banner.png" alt="ByteClaw Banner" width="100%">
+  <br>
+  <img src="assets/logo.png" alt="ByteClaw Logo" width="256">
 
-<h1>ByteClaw: Trợ lý AI Siêu Nhẹ viết bằng Go</h1>
+  <h1>ByteClaw: Trợ lý AI Siêu Nhẹ viết bằng Go</h1>
 
 <h3>Phần cứng $10 · RAM 10MB · Khởi động 1 giây · 皮皮虾，我们走！</h3>
 
@@ -13,7 +15,7 @@
     <a href="https://github.com/ajmaluk/byteclaw"><img src="https://img.shields.io/badge/GitHub-ajmaluk%2Fbyteclaw-black?style=flat&logo=github&logoColor=white" alt="GitHub"></a>
   </p>
 
-[中文](README.zh.md) | [日本語](README.ja.md) | [Português](README.pt-br.md) | **Tiếng Việt** | [Français](README.fr.md) | [English](README.md)
+[中文](README.zh.md) | [日本語](README.ja.md) | [Português](README.pt-br.md) | **Tiếng Việt** | [Français](README.fr.md) | [English](README.md) | [हिन्दी](README.hi.md) | [മലയാളം](README.ml.md)
 </div>
 
 ---
@@ -99,17 +101,7 @@
 </tr>
 </table>
 
-### 🐜 Triển khai sáng tạo trên phần cứng tối thiểu
 
-ByteClaw có thể triển khai trên hầu hết mọi thiết bị Linux!
-
-* $9.9 [LicheeRV-Nano](https://www.aliexpress.com/item/1005006519668532.html) phiên bản E (Ethernet) hoặc W (WiFi6), dùng làm Trợ lý Gia đình tối giản.
-* $30~50 [NanoKVM](https://www.aliexpress.com/item/1005007369816019.html), hoặc $100 [NanoKVM-Pro](https://www.aliexpress.com/item/1005010048471263.html), dùng cho quản trị Server tự động.
-* $50 [MaixCAM](https://www.aliexpress.com/item/1005008053333693.html) hoặc $100 [MaixCAM2](https://www.kickstarter.com/projects/zepan/maixcam2-build-your-next-gen-4k-ai-camera), dùng cho Giám sát thông minh.
-
-https://private-user-images.githubusercontent.com/83055338/547056448-e7b031ff-d6f5-4468-bcca-5726b6fecb5c.mp4
-
-🌟 Nhiều hình thức triển khai hơn đang chờ bạn khám phá!
 
 ## 📦 Cài đặt
 

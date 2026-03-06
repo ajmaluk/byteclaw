@@ -1,7 +1,9 @@
 <div align="center">
-<img src="assets/logo.png" alt="ByteClaw" width="512">
+  <img src="assets/banner.png" alt="ByteClaw Banner" width="100%">
+  <br>
+  <img src="assets/logo.png" alt="ByteClaw Logo" width="256">
 
-<h1>ByteClaw: 基于Go语言的超高效 AI 助手</h1>
+  <h1>ByteClaw: 基于Go语言的超高效 AI 助手</h1>
 
 <h3>10$硬件 · 10MB内存 · 1秒启动 · 皮皮虾，我们走！</h3>
 
@@ -13,7 +15,7 @@
     <a href="https://github.com/ajmaluk/byteclaw"><img src="https://img.shields.io/badge/GitHub-ajmaluk%2Fbyteclaw-black?style=flat&logo=github&logoColor=white" alt="GitHub"></a>
   </p>
 
-**中文** | [日本語](README.ja.md) | [Português](README.pt-br.md) | [Tiếng Việt](README.vi.md) | [Français](README.fr.md) | [English](README.md)
+**中文** | [日本語](README.ja.md) | [Português](README.pt-br.md) | [Tiếng Việt](README.vi.md) | [Français](README.fr.md) | [English](README.md) | [हिन्दी](README.hi.md) | [മലയാളം](README.ml.md)
 
 </div>
 
@@ -119,23 +121,13 @@ termux-chroot ./byteclaw-linux-arm64 onboard
 然后跟随下面的“快速开始”章节继续配置byteclaw即可使用！  
 <img src="assets/termux.png" alt="ByteClaw" width="512">
 
-### 🐜 创新的低占用部署
 
-ByteClaw 几乎可以部署在任何 Linux 设备上！
-
-- $9.9 [LicheeRV-Nano](https://www.aliexpress.com/item/1005006519668532.html) E(网口) 或 W(WiFi6) 版本，用于极简家庭助手。
-- $30~50 [NanoKVM](https://www.aliexpress.com/item/1005007369816019.html)，或 $100 [NanoKVM-Pro](https://www.aliexpress.com/item/1005010048471263.html)，用于自动化服务器运维。
-- $50 [MaixCAM](https://www.aliexpress.com/item/1005008053333693.html) 或 $100 [MaixCAM2](https://www.kickstarter.com/projects/zepan/maixcam2-build-your-next-gen-4k-ai-camera)，用于智能监控。
-
-[https://private-user-images.githubusercontent.com/83055338/547056448-e7b031ff-d6f5-4468-bcca-5726b6fecb5c.mp4](https://private-user-images.githubusercontent.com/83055338/547056448-e7b031ff-d6f5-4468-bcca-5726b6fecb5c.mp4)
-
-🌟 更多部署案例敬请期待！
 
 ## 📦 安装
 
 ### 使用预编译二进制文件安装
 
-从 [Release 页面](https://github.com/ajmaluk/byteclaw/releases) 下载适用于您平台的固件。
+从 [Release 页面](https://github.com/ajmaluk/byteclaw/releases) 下载适用于您平台的二进制文件。
 
 ### 从源码安装（获取最新特性，开发推荐）
 

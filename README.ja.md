@@ -1,7 +1,9 @@
 <div align="center">
-<img src="assets/logo.png" alt="ByteClaw" width="512">
+  <img src="assets/banner.png" alt="ByteClaw Banner" width="100%">
+  <br>
+  <img src="assets/logo.png" alt="ByteClaw Logo" width="256">
 
-<h1>ByteClaw: Go で書かれた超効率 AI アシスタント</h1>
+  <h1>ByteClaw: Go で書かれた超効率 AI アシスタント</h1>
 
 <h3>$10 ハードウェア · 10MB RAM · 1秒起動 · 行くぜ、シャコ！</h3>
 <h3></h3>
@@ -12,7 +14,7 @@
 <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
 </p>
 
-[中文](README.zh.md) | **日本語** | [Português](README.pt-br.md) | [Tiếng Việt](README.vi.md) | [Français](README.fr.md) | [English](README.md)
+[中文](README.zh.md) | **日本語** | [Português](README.pt-br.md) | [Tiếng Việt](README.vi.md) | [Français](README.fr.md) | [English](README.md) | [हिन्दी](README.hi.md) | [മലയാളം](README.ml.md)
 
 </div>
 
@@ -82,22 +84,12 @@
   </tr>
 </table>
 
-### 🐜 革新的な省フットプリントデプロイ
-ByteClaw はほぼすべての Linux デバイスにデプロイできます！
-
-- $9.9 [LicheeRV-Nano](https://www.aliexpress.com/item/1005006519668532.html) E(Ethernet) または W(WiFi6) バージョン、最小ホームアシスタントに
-- $30~50 [NanoKVM](https://www.aliexpress.com/item/1005007369816019.html) または $100 [NanoKVM-Pro](https://www.aliexpress.com/item/1005010048471263.html) サーバー自動メンテナンスに
-- $50 [MaixCAM](https://www.aliexpress.com/item/1005008053333693.html) または $100 [MaixCAM2](https://www.kickstarter.com/projects/zepan/maixcam2-build-your-next-gen-4k-ai-camera) スマート監視に
-
-https://private-user-images.githubusercontent.com/83055338/547056448-e7b031ff-d6f5-4468-bcca-5726b6fecb5c.mp4
-
-🌟 もっと多くのデプロイ事例が待っています！
 
 ## 📦 インストール
 
 ### コンパイル済みバイナリでインストール
 
-[リリースページ](https://github.com/ajmaluk/byteclaw/releases) からお使いのプラットフォーム用のファームウェアをダウンロードしてください。
+[リリースページ](https://github.com/ajmaluk/byteclaw/releases) からお使いのプラットフォーム用のバイナリをダウンロードしてください。
 
 ### ソースからインストール（最新機能、開発向け推奨）
 

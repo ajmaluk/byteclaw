@@ -19,7 +19,7 @@
     <a href="https://discord.gg/V4sAZ9XWpN"><img src="https://img.shields.io/badge/Discord-Community-4c60eb?style=flat&logo=discord&logoColor=white" alt="Discord"></a>
   </p>
 
-[中文](README.zh.md) | [日本語](README.ja.md) | [Português](README.pt-br.md) | [Tiếng Việt](README.vi.md) | [Français](README.fr.md) | **English**
+[中文](README.zh.md) | [日本語](README.ja.md) | [Português](README.pt-br.md) | [Tiếng Việt](README.vi.md) | [Français](README.fr.md) | **English** | [हिन्दी](README.hi.md) | [മലയാളം](README.ml.md)
 
 </div>
 
@@ -51,22 +51,22 @@
 
 2026-02-16 🎉 ByteClaw hit 12K stars in one week! Thank you all for your support! ByteClaw is growing faster than we ever imagined. Given the high volume of PRs, we urgently need community maintainers. Our volunteer roles and roadmap are officially posted [here](docs/ROADMAP.md) —we can’t wait to have you on board!
 
-2026-02-13 🎉 ByteClaw hit 5000 stars in 4days! Thank you for the community! There are so many PRs & issues coming in (during Chinese New Year holidays), we are finalizing the Project Roadmap and setting up the Developer Group to accelerate ByteClaw's development.  
+2026-02-13 🎉 ByteClaw hit 5000 stars in 4 days! Thank you to the community! With a surge of PRs and issues, we are finalizing the Project Roadmap and establishing a Developer Group to accelerate ByteClaw's development.  
 🚀 Call to Action: Please submit your feature requests in GitHub Discussions. We will review and prioritize them during our upcoming weekly meeting.
 
-2026-02-09 🎉 ByteClaw Launched! Built in 1 day to bring AI Agents to $10 hardware with <10MB RAM. 🤖 ByteClaw，Let's Go！
+2026-02-09 🎉 ByteClaw Launched! Built in just 1 day to bring AI Agents to $10 hardware with <10MB RAM. 🤖 ByteClaw, let's go!
 
 ## ✨ Features
 
-🪶 **Ultra-Lightweight**: <10MB Memory footprint — 99% smaller than Clawdbot - core functionality.
+🪶 **Ultra-Lightweight**: <10MB Memory footprint — 99% smaller than Clawdbot's core functionality.
 
 💰 **Minimal Cost**: Efficient enough to run on $10 Hardware — 98% cheaper than a Mac mini.
 
-⚡️ **Lightning Fast**: 400X Faster startup time, boot in 1 second even in 0.6GHz single core.
+⚡️ **Lightning Fast**: 400X Faster startup time, booting in 1 second even on a 0.6GHz single-core processor.
 
-🌍 **True Portability**: Single self-contained binary across RISC-V, ARM, and x86, One-click to Go!
+🌍 **True Portability**: Single self-contained binary across RISC-V, ARM, and x86. One click and you're ready to go!
 
-🤖 **AI-Bootstrapped**: Autonomous Go-native implementation — 95% Agent-generated core with human-in-the-loop refinement.
+🤖 **AI-Bootstrapped**: Autonomous Go-native implementation — 95% agent-generated core with human-in-the-loop refinement.
 
 |                               | OpenClaw      | NanoBot                  | **ByteClaw**                              |
 | ----------------------------- | ------------- | ------------------------ | ----------------------------------------- |
@@ -101,10 +101,10 @@
 
 ### 📱 Run on old Android Phones
 
-Give your decade-old phone a second life! Turn it into a smart AI Assistant with ByteClaw. Quick Start:
+Give your old Android phone a second life! Transform it into a smart AI Assistant with ByteClaw. Quick Start:
 
 1. **Install Termux** (Available on F-Droid or Google Play).
-2. **Execute cmds**
+2. **Execute the following commands:**
 
 ```bash
 # Note: Replace v0.1.1 with the latest version from the Releases page
@@ -117,23 +117,13 @@ termux-chroot ./byteclaw-linux-arm64 onboard
 And then follow the instructions in the "Quick Start" section to complete the configuration!
 <img src="assets/termux.png" alt="ByteClaw" width="512">
 
-### 🐜 Innovative Low-Footprint Deploy
 
-ByteClaw can be deployed on almost any Linux device!
-
-- $9.9 [LicheeRV-Nano](https://www.aliexpress.com/item/1005006519668532.html) E(Ethernet) or W(WiFi6) version, for Minimal Home Assistant
-- $30~50 [NanoKVM](https://www.aliexpress.com/item/1005007369816019.html), or $100 [NanoKVM-Pro](https://www.aliexpress.com/item/1005010048471263.html) for Automated Server Maintenance
-- $50 [MaixCAM](https://www.aliexpress.com/item/1005008053333693.html) or $100 [MaixCAM2](https://www.kickstarter.com/projects/zepan/maixcam2-build-your-next-gen-4k-ai-camera) for Smart Monitoring
-
-<https://private-user-images.githubusercontent.com/83055338/547056448-e7b031ff-d6f5-4468-bcca-5726b6fecb5c.mp4>
-
-🌟 More Deployment Cases Await！
 
 ## 📦 Install
 
 ### Install with precompiled binary
 
-Download the firmware for your platform from the [release](https://github.com/ajmaluk/byteclaw/releases) page.
+Download the binary for your platform from the [Release](https://github.com/ajmaluk/byteclaw/releases) page.
 
 ### Install from source (latest features, recommended for development)
 
