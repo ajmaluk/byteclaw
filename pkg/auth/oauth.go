@@ -45,13 +45,19 @@ func OpenAIOAuthConfig() OAuthProviderConfig {
 func GoogleAntigravityOAuthConfig() OAuthProviderConfig {
 	clientID := os.Getenv("GOOGLE_OAUTH_CLIENT_ID")
 	clientSecret := os.Getenv("GOOGLE_OAUTH_CLIENT_SECRET")
+	port := 51121
+	if p := os.Getenv("GOOGLE_OAUTH_PORT"); p != "" {
+		if v, err := strconv.Atoi(p); err == nil && v > 0 && v < 65536 {
+			port = v
+		}
+	}
 	return OAuthProviderConfig{
 		Issuer:       "https://accounts.google.com/o/oauth2/v2",
 		TokenURL:     "https://oauth2.googleapis.com/token",
 		ClientID:     clientID,
 		ClientSecret: clientSecret,
 		Scopes:       "https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/cclog https://www.googleapis.com/auth/experimentsandconfigs",
-		Port:         51121,
+		Port:         port,
 	}
 }
 
