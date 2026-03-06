@@ -11,7 +11,7 @@ func newShowCommand(loaderFn func() (*skills.SkillsLoader, error)) *cobra.Comman
 		Use:     "show",
 		Short:   "Show skill details",
 		Args:    cobra.ExactArgs(1),
-		Example: `picoclaw skills show weather`,
+		Example: `byteclaw skills show weather`,
 		RunE: func(_ *cobra.Command, args []string) error {
 			loader, err := loaderFn()
 			if err != nil {

@@ -91,7 +91,7 @@ func (o *OpenclawHandler) ExecuteConfigMigration(srcConfigPath, dstConfigPath st
 		return err
 	}
 
-	picoCfg, warnings, err := openclawCfg.ConvertToPicoClaw(o.opts.SourceHome)
+	byteCfg, warnings, err := openclawCfg.ConvertToByteClaw(o.opts.SourceHome)
 	if err != nil {
 		return err
 	}
@@ -100,7 +100,7 @@ func (o *OpenclawHandler) ExecuteConfigMigration(srcConfigPath, dstConfigPath st
 		fmt.Printf("  Warning: %s\n", w)
 	}
 
-	incoming := picoCfg.ToStandardConfig()
+	incoming := byteCfg.ToStandardConfig()
 	if err := os.MkdirAll(filepath.Dir(dstConfigPath), 0o755); err != nil {
 		return err
 	}
@@ -136,7 +136,7 @@ func findSourceConfig(sourceHome string) (string, error) {
 }
 
 func rewriteWorkspacePath(path string) string {
-	path = strings.Replace(path, ".openclaw", ".picoclaw", 1)
+	path = strings.Replace(path, ".openclaw", ".byteclaw", 1)
 	return path
 }
 

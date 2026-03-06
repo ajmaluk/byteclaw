@@ -81,8 +81,8 @@ func TestLoadOpenClawConfig(t *testing.T) {
 	}
 
 	workspace := cfg.GetDefaultWorkspace()
-	if workspace != "~/.picoclaw/workspace" {
-		t.Errorf("expected workspace '~/.picoclaw/workspace', got '%s'", workspace)
+	if workspace != "~/.byteclaw/workspace" {
+		t.Errorf("expected workspace '~/.byteclaw/workspace', got '%s'", workspace)
 	}
 
 	agents := cfg.GetAgents()
@@ -159,7 +159,7 @@ func TestGetProviderConfig(t *testing.T) {
 	}
 }
 
-func TestConvertToPicoClaw(t *testing.T) {
+func TestConvertToByteClaw(t *testing.T) {
 	tmpDir := t.TempDir()
 	configPath := filepath.Join(tmpDir, "openclaw.json")
 
@@ -236,45 +236,45 @@ func TestConvertToPicoClaw(t *testing.T) {
 		t.Fatalf("failed to load config: %v", err)
 	}
 
-	picoCfg, warnings, err := cfg.ConvertToPicoClaw("")
+	byteCfg, warnings, err := cfg.ConvertToByteClaw("")
 	if err != nil {
 		t.Fatalf("failed to convert config: %v", err)
 	}
 
-	if picoCfg.Agents.Defaults.ModelName != "claude-sonnet-4-20250514" {
-		t.Errorf("expected model 'claude-sonnet-4-20250514', got '%s'", picoCfg.Agents.Defaults.ModelName)
+	if byteCfg.Agents.Defaults.ModelName != "claude-sonnet-4-20250514" {
+		t.Errorf("expected model 'claude-sonnet-4-20250514', got '%s'", byteCfg.Agents.Defaults.ModelName)
 	}
-	if picoCfg.Agents.Defaults.Workspace != "~/.picoclaw/workspace" {
-		t.Errorf("expected workspace '~/.picoclaw/workspace', got '%s'", picoCfg.Agents.Defaults.Workspace)
+	if byteCfg.Agents.Defaults.Workspace != "~/.byteclaw/workspace" {
+		t.Errorf("expected workspace '~/.byteclaw/workspace', got '%s'", byteCfg.Agents.Defaults.Workspace)
 	}
 
-	if len(picoCfg.Agents.List) != 2 {
-		t.Errorf("expected 2 agents, got %d", len(picoCfg.Agents.List))
+	if len(byteCfg.Agents.List) != 2 {
+		t.Errorf("expected 2 agents, got %d", len(byteCfg.Agents.List))
 	}
-	if picoCfg.Agents.List[0].ID != "main" {
-		t.Errorf("expected first agent id 'main', got '%s'", picoCfg.Agents.List[0].ID)
+	if byteCfg.Agents.List[0].ID != "main" {
+		t.Errorf("expected first agent id 'main', got '%s'", byteCfg.Agents.List[0].ID)
 	}
-	if picoCfg.Agents.List[1].Skills == nil || len(picoCfg.Agents.List[1].Skills) != 2 {
+	if byteCfg.Agents.List[1].Skills == nil || len(byteCfg.Agents.List[1].Skills) != 2 {
 		t.Errorf("expected 2 skills for assistant agent")
 	}
 
-	if !picoCfg.Channels.Telegram.Enabled {
+	if !byteCfg.Channels.Telegram.Enabled {
 		t.Error("telegram should be enabled")
 	}
-	if picoCfg.Channels.Telegram.Token != "test-token" {
-		t.Errorf("expected telegram token 'test-token', got '%s'", picoCfg.Channels.Telegram.Token)
+	if byteCfg.Channels.Telegram.Token != "test-token" {
+		t.Errorf("expected telegram token 'test-token', got '%s'", byteCfg.Channels.Telegram.Token)
 	}
 
-	if picoCfg.Channels.WhatsApp.BridgeURL != "http://localhost:3000" {
-		t.Errorf("expected whatsapp bridge URL 'http://localhost:3000', got '%s'", picoCfg.Channels.WhatsApp.BridgeURL)
+	if byteCfg.Channels.WhatsApp.BridgeURL != "http://localhost:3000" {
+		t.Errorf("expected whatsapp bridge URL 'http://localhost:3000', got '%s'", byteCfg.Channels.WhatsApp.BridgeURL)
 	}
 
-	if picoCfg.Channels.Feishu.AppID != "app-id" {
-		t.Errorf("expected feishu app ID 'app-id', got '%s'", picoCfg.Channels.Feishu.AppID)
+	if byteCfg.Channels.Feishu.AppID != "app-id" {
+		t.Errorf("expected feishu app ID 'app-id', got '%s'", byteCfg.Channels.Feishu.AppID)
 	}
 
-	if len(picoCfg.ModelList) != 1 {
-		t.Errorf("expected 1 model config (no models.json provided), got %d", len(picoCfg.ModelList))
+	if len(byteCfg.ModelList) != 1 {
+		t.Errorf("expected 1 model config (no models.json provided), got %d", len(byteCfg.ModelList))
 	}
 
 	foundWarning := false
@@ -289,7 +289,7 @@ func TestConvertToPicoClaw(t *testing.T) {
 	}
 }
 
-func TestConvertToPicoClawWithQQAndDingTalk(t *testing.T) {
+func TestConvertToByteClawWithQQAndDingTalk(t *testing.T) {
 	tmpDir := t.TempDir()
 	configPath := filepath.Join(tmpDir, "openclaw.json")
 
@@ -335,43 +335,43 @@ func TestConvertToPicoClawWithQQAndDingTalk(t *testing.T) {
 		t.Fatalf("failed to load config: %v", err)
 	}
 
-	picoCfg, _, err := cfg.ConvertToPicoClaw("")
+	byteCfg, _, err := cfg.ConvertToByteClaw("")
 	if err != nil {
 		t.Fatalf("failed to convert config: %v", err)
 	}
 
-	if !picoCfg.Channels.QQ.Enabled {
+	if !byteCfg.Channels.QQ.Enabled {
 		t.Error("qq should be enabled")
 	}
-	if picoCfg.Channels.QQ.AppID != "qq-app-id" {
-		t.Errorf("expected qq app ID 'qq-app-id', got '%s'", picoCfg.Channels.QQ.AppID)
+	if byteCfg.Channels.QQ.AppID != "qq-app-id" {
+		t.Errorf("expected qq app ID 'qq-app-id', got '%s'", byteCfg.Channels.QQ.AppID)
 	}
 
-	if !picoCfg.Channels.DingTalk.Enabled {
+	if !byteCfg.Channels.DingTalk.Enabled {
 		t.Error("dingtalk should be enabled")
 	}
-	if picoCfg.Channels.DingTalk.ClientID != "ding-app-id" {
-		t.Errorf("expected dingtalk client ID 'ding-app-id', got '%s'", picoCfg.Channels.DingTalk.ClientID)
+	if byteCfg.Channels.DingTalk.ClientID != "ding-app-id" {
+		t.Errorf("expected dingtalk client ID 'ding-app-id', got '%s'", byteCfg.Channels.DingTalk.ClientID)
 	}
 
-	if !picoCfg.Channels.MaixCam.Enabled {
+	if !byteCfg.Channels.MaixCam.Enabled {
 		t.Error("maixcam should be enabled")
 	}
-	if picoCfg.Channels.MaixCam.Host != "192.168.1.100" {
-		t.Errorf("expected maixcam host '192.168.1.100', got '%s'", picoCfg.Channels.MaixCam.Host)
+	if byteCfg.Channels.MaixCam.Host != "192.168.1.100" {
+		t.Errorf("expected maixcam host '192.168.1.100', got '%s'", byteCfg.Channels.MaixCam.Host)
 	}
-	if picoCfg.Channels.MaixCam.Port != 9000 {
-		t.Errorf("expected maixcam port 9000, got %d", picoCfg.Channels.MaixCam.Port)
+	if byteCfg.Channels.MaixCam.Port != 9000 {
+		t.Errorf("expected maixcam port 9000, got %d", byteCfg.Channels.MaixCam.Port)
 	}
 
-	if !picoCfg.Channels.Slack.Enabled {
+	if !byteCfg.Channels.Slack.Enabled {
 		t.Error("slack should be enabled")
 	}
-	if picoCfg.Channels.Slack.BotToken != "xoxb-test" {
-		t.Errorf("expected slack bot token 'xoxb-test', got '%s'", picoCfg.Channels.Slack.BotToken)
+	if byteCfg.Channels.Slack.BotToken != "xoxb-test" {
+		t.Errorf("expected slack bot token 'xoxb-test', got '%s'", byteCfg.Channels.Slack.BotToken)
 	}
-	if picoCfg.Channels.Slack.AppToken != "xapp-test" {
-		t.Errorf("expected slack app token 'xapp-test', got '%s'", picoCfg.Channels.Slack.AppToken)
+	if byteCfg.Channels.Slack.AppToken != "xapp-test" {
+		t.Errorf("expected slack app token 'xapp-test', got '%s'", byteCfg.Channels.Slack.AppToken)
 	}
 }
 
@@ -526,12 +526,12 @@ func TestLoadOpenClawConfigFromDir(t *testing.T) {
 }
 
 func TestToStandardConfig(t *testing.T) {
-	picoCfg := &PicoClawConfig{
+	byteCfg := &ByteClawConfig{
 		Agents: AgentsConfig{
 			Defaults: AgentDefaults{
 				Provider:  "anthropic",
 				ModelName: "claude-sonnet-4-20250514",
-				Workspace: "~/.picoclaw/workspace",
+				Workspace: "~/.byteclaw/workspace",
 			},
 			List: []AgentConfig{
 				{
@@ -565,7 +565,7 @@ func TestToStandardConfig(t *testing.T) {
 		},
 	}
 
-	stdCfg := picoCfg.ToStandardConfig()
+	stdCfg := byteCfg.ToStandardConfig()
 
 	if stdCfg.Agents.Defaults.Provider != "anthropic" {
 		t.Errorf("expected provider 'anthropic', got '%s'", stdCfg.Agents.Defaults.Provider)
@@ -573,8 +573,8 @@ func TestToStandardConfig(t *testing.T) {
 	if stdCfg.Agents.Defaults.ModelName != "claude-sonnet-4-20250514" {
 		t.Errorf("expected model name 'claude-sonnet-4-20250514', got '%s'", stdCfg.Agents.Defaults.ModelName)
 	}
-	if stdCfg.Agents.Defaults.Workspace != "~/.picoclaw/workspace" {
-		t.Errorf("expected workspace '~/.picoclaw/workspace', got '%s'", stdCfg.Agents.Defaults.Workspace)
+	if stdCfg.Agents.Defaults.Workspace != "~/.byteclaw/workspace" {
+		t.Errorf("expected workspace '~/.byteclaw/workspace', got '%s'", stdCfg.Agents.Defaults.Workspace)
 	}
 
 	if len(stdCfg.Agents.List) != 1 {

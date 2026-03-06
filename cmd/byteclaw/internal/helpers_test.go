@@ -14,7 +14,7 @@ func TestGetConfigPath(t *testing.T) {
 	t.Setenv("HOME", "/tmp/home")
 
 	got := GetConfigPath()
-	want := filepath.Join("/tmp/home", ".picoclaw", "config.json")
+	want := filepath.Join("/tmp/home", ".byteclaw", "config.json")
 
 	assert.Equal(t, want, got)
 }
@@ -87,7 +87,7 @@ func TestGetConfigPath_Windows(t *testing.T) {
 	t.Setenv("USERPROFILE", testUserProfilePath)
 
 	got := GetConfigPath()
-	want := filepath.Join(testUserProfilePath, ".picoclaw", "config.json")
+	want := filepath.Join(testUserProfilePath, ".byteclaw", "config.json")
 
 	require.True(t, strings.EqualFold(got, want), "GetConfigPath() = %q, want %q", got, want)
 }
@@ -97,7 +97,7 @@ func TestGetVersion(t *testing.T) {
 }
 
 func TestGetConfigPath_WithEnv(t *testing.T) {
-	t.Setenv("PICOCLAW_CONFIG", "/tmp/custom/config.json")
+	t.Setenv("BYTECLAW_CONFIG", "/tmp/custom/config.json")
 	t.Setenv("HOME", "/tmp/home") // Also set home to ensure env is preferred
 
 	got := GetConfigPath()

@@ -1,9 +1,9 @@
-# PicoClaw Launcher
+# ByteClaw Launcher
 
 > [!WARNING]
 > This project is a temporary solution and will be refactored in the future to provide a complete web service. Therefore, the APIs in this directory are not stable.
 
-A standalone launcher for PicoClaw, providing visual JSON editing and OAuth provider authentication management.
+A standalone launcher for ByteClaw, providing visual JSON editing and OAuth provider authentication management.
 
 ## Features
 
@@ -19,16 +19,16 @@ A standalone launcher for PicoClaw, providing visual JSON editing and OAuth prov
 
 ```bash
 # Build
-go build -o picoclaw-launcher ./cmd/picoclaw-launcher/
+go build -o byteclaw-launcher ./cmd/byteclaw-launcher/
 
-# Run with default config path (~/.picoclaw/config.json)
-./picoclaw-launcher
+# Run with default config path (~/.byteclaw/config.json)
+./byteclaw-launcher
 
 # Specify a config file
-./picoclaw-launcher ./config.json
+./byteclaw-launcher ./config.json
 
 # Allow LAN access
-./picoclaw-launcher -public
+./byteclaw-launcher -public
 ```
 
 Open `http://localhost:18800` in your browser.
@@ -36,10 +36,10 @@ Open `http://localhost:18800` in your browser.
 ## CLI Options
 
 ```
-Usage: picoclaw-config [options] [config.json]
+Usage: byteclaw-config [options] [config.json]
 
 Arguments:
-  config.json    Path to the configuration file (default: ~/.picoclaw/config.json)
+  config.json    Path to the configuration file (default: ~/.byteclaw/config.json)
 
 Options:
   -public        Listen on all interfaces (0.0.0.0), allowing access from other devices
@@ -70,7 +70,7 @@ Reads the current configuration file.
 ```json
 {
   "config": { ... },
-  "path": "/Users/xiao/.picoclaw/config.json"
+  "path": "/Users/xiao/.byteclaw/config.json"
 }
 ```
 
@@ -192,7 +192,7 @@ Returns an authorization URL for the frontend to open in a new tab:
 }
 ```
 
-After authentication, Google redirects to `GET /auth/callback`, which saves the credentials and redirects back to the picoclaw-config UI.
+After authentication, Google redirects to `GET /auth/callback`, which saves the credentials and redirects back to the byteclaw-config UI.
 
 ---
 
@@ -231,7 +231,7 @@ On success, redirects to `/#auth`.
 
 #### GET /api/process/status
 
-Gets the running status of the `picoclaw gateway` process.
+Gets the running status of the `byteclaw gateway` process.
 
 **Response** `200 OK` (Running)
 
@@ -256,7 +256,7 @@ Gets the running status of the `picoclaw gateway` process.
 
 #### POST /api/process/start
 
-Starts the `picoclaw gateway` process in the background.
+Starts the `byteclaw gateway` process in the background.
 
 **Response** `200 OK`
 
@@ -271,7 +271,7 @@ Starts the `picoclaw gateway` process in the background.
 
 #### POST /api/process/stop
 
-Stops the running `picoclaw gateway` process.
+Stops the running `byteclaw gateway` process.
 
 **Response** `200 OK`
 
@@ -286,5 +286,5 @@ Stops the running `picoclaw gateway` process.
 ## Testing
 
 ```bash
-go test -v ./cmd/picoclaw-launcher/
+go test -v ./cmd/byteclaw-launcher/
 ```

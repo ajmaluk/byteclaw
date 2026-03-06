@@ -603,8 +603,8 @@ func (c *FeishuChannel) downloadResource(
 		filename += fallbackExt
 	}
 
-	// Write to the shared picoclaw_media directory using a unique name to avoid collisions.
-	mediaDir := filepath.Join(os.TempDir(), "picoclaw_media")
+	// Write to the shared byteclaw_media directory using a unique name to avoid collisions.
+	mediaDir := filepath.Join(os.TempDir(), "byteclaw_media")
 	if mkdirErr := os.MkdirAll(mediaDir, 0o700); mkdirErr != nil {
 		logger.ErrorCF("feishu", "Failed to create media directory", map[string]any{
 			"error": mkdirErr.Error(),

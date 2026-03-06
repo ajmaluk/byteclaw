@@ -1,29 +1,29 @@
 services:
   # ─────────────────────────────────────────────
-  # PicoClaw Agent (one-shot query)
-  #   docker compose -f docker/docker-compose.yml run --rm picoclaw-agent -m "Hello"
+  # ByteClaw Agent (one-shot query)
+  #   docker compose -f docker/docker-compose.yml run --rm byteclaw-agent -m "Hello"
   # ─────────────────────────────────────────────
-  picoclaw-agent:
-    image: docker.io/sipeed/picoclaw:latest
-    container_name: picoclaw-agent
+  byteclaw-agent:
+    image: docker.io/ajmaluk/byteclaw:latest
+    container_name: byteclaw-agent
     profiles:
       - agent
     # Uncomment to access host network; leave commented unless needed.
     #extra_hosts:
     #  - "host.docker.internal:host-gateway"
     volumes:
-      - ./data:/root/.picoclaw
-    entrypoint: ["picoclaw", "agent"]
+      - ./data:/root/.byteclaw
+    entrypoint: ["byteclaw", "agent"]
     stdin_open: true
     tty: true
 
   # ─────────────────────────────────────────────
-  # PicoClaw Gateway (Long-running Bot)
-  #   docker compose -f docker/docker-compose.yml up picoclaw-gateway
+  # ByteClaw Gateway (Long-running Bot)
+  #   docker compose -f docker/docker-compose.yml up byteclaw-gateway
   # ─────────────────────────────────────────────
-  picoclaw-gateway:
-    image: docker.io/sipeed/picoclaw:latest
-    container_name: picoclaw-gateway
+  byteclaw-gateway:
+    image: docker.io/ajmaluk/byteclaw:latest
+    container_name: byteclaw-gateway
     restart: on-failure
     profiles:
       - gateway
@@ -31,4 +31,4 @@ services:
     #extra_hosts:
     #  - "host.docker.internal:host-gateway"
     volumes:
-      - ./data:/root/.picoclaw
+      - ./data:/root/.byteclaw

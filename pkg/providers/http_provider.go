@@ -1,8 +1,8 @@
-// PicoClaw - Ultra-lightweight personal AI agent
+																																																																																							// ByteClaw - Ultra-lightweight personal AI agent
 // Inspired by and based on nanobot: https://github.com/HKUDS/nanobot
 // License: MIT
 //
-// Copyright (c) 2026 PicoClaw contributors
+// Copyright (c) 2026 ByteClaw contributors
 
 package providers
 
@@ -24,7 +24,7 @@ func NewHTTPProvider(apiKey, apiBase, proxy string) *HTTPProvider {
 }
 
 func NewHTTPProviderWithMaxTokensField(apiKey, apiBase, proxy, maxTokensField string) *HTTPProvider {
-	return NewHTTPProviderWithMaxTokensFieldAndRequestTimeout(apiKey, apiBase, proxy, maxTokensField, 0)
+	return NewHTTPProviderWithOptions(apiKey, apiBase, proxy, maxTokensField, 0, 0)
 }
 
 func NewHTTPProviderWithOptions(

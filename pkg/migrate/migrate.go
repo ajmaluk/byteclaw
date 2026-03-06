@@ -96,7 +96,7 @@ func (m *MigrateInstance) Run(opts Options) (*Result, error) {
 		return nil, err
 	}
 
-	fmt.Println("Migrating from Source to PicoClaw")
+	fmt.Println("Migrating from Source to ByteClaw")
 	fmt.Printf("  Source:      %s\n", sourceHome)
 	fmt.Printf("  Target: %s\n", targetHome)
 	fmt.Println()
@@ -142,7 +142,7 @@ func (m *MigrateInstance) Plan(opts Options, sourceHome, targetHome string) ([]A
 				Type:        ActionConvertConfig,
 				Source:      configPath,
 				Target:      filepath.Join(targetHome, "config.json"),
-				Description: "convert Source config to PicoClaw format",
+				Description: "convert Source config to ByteClaw format",
 			})
 		}
 	}

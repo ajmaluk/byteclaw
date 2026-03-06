@@ -1,7 +1,7 @@
-// PicoClaw - Ultra-lightweight personal AI agent
+// ByteClaw - Ultra-lightweight personal AI agent
 // License: MIT
 //
-// Copyright (c) 2026 PicoClaw contributors
+// Copyright (c) 2026 ByteClaw contributors
 
 package config
 
@@ -10,16 +10,16 @@ import (
 	"path/filepath"
 )
 
-// DefaultConfig returns the default configuration for PicoClaw.
+// DefaultConfig returns the default configuration for ByteClaw.
 func DefaultConfig() *Config {
 	// Determine the base path for the workspace.
-	// Priority: $PICOCLAW_HOME > ~/.picoclaw
+	// Priority: $BYTECLAW_HOME > ~/.byteclaw
 	var homePath string
-	if picoclawHome := os.Getenv("PICOCLAW_HOME"); picoclawHome != "" {
-		homePath = picoclawHome
+	if byteclawHome := os.Getenv("BYTECLAW_HOME"); byteclawHome != "" {
+		homePath = byteclawHome
 	} else {
 		userHome, _ := os.UserHomeDir()
-		homePath = filepath.Join(userHome, ".picoclaw")
+		homePath = filepath.Join(userHome, ".byteclaw")
 	}
 	workspacePath := filepath.Join(homePath, "workspace")
 
@@ -149,7 +149,7 @@ func DefaultConfig() *Config {
 				MaxSteps:       10,
 				WelcomeMessage: "Hello! I'm your AI assistant. How can I help you today?",
 			},
-			Pico: PicoConfig{
+			Byte: ByteConfig{
 				Enabled:        false,
 				Token:          "",
 				PingInterval:   30,

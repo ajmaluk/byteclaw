@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ajmaluk/byteclaw/cmd/picoclaw-launcher-tui/internal/ui"
+	"github.com/ajmaluk/byteclaw/cmd/byteclaw-launcher-tui/internal/ui"
 )
 
 func main() {

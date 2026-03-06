@@ -1,4 +1,4 @@
-// Package identity provides unified user identity utilities for PicoClaw.
+// Package identity provides unified user identity utilities for ByteClaw.
 // It introduces a canonical "platform:id" format and matching logic
 // that is backward-compatible with all legacy allow-list formats.
 package identity

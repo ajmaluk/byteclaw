@@ -4,20 +4,21 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 
-	configstore "github.com/ajmaluk/byteclaw/cmd/picoclaw-launcher-tui/internal/config"
-	picoclawconfig "github.com/ajmaluk/byteclaw/pkg/config"
+	configstore "github.com/ajmaluk/byteclaw/cmd/byteclaw-launcher-tui/internal/config"
+	byteclawconfig "github.com/ajmaluk/byteclaw/pkg/config"
 )
 
 type appState struct {
 	app         *tview.Application
 	pages       *tview.Pages
 	stack       []string
-	config      *picoclawconfig.Config
+	config      *byteclawconfig.Config
 	configPath  string
 	gatewayCmd  *exec.Cmd
 	menus       map[string]*Menu
@@ -40,7 +41,7 @@ func Run() error {
 	}
 
 	if cfg == nil {
-		cfg = picoclawconfig.DefaultConfig()
+		cfg = byteclawconfig.DefaultConfig()
 	}
 
 	originalData, hasOriginal := loadOriginalConfig(path)
@@ -181,7 +182,7 @@ func refreshMainMenu(menu *Menu, s *appState) {
 		},
 		{
 			Label:       "Start Talk",
-			Description: "Open picoclaw agent in terminal",
+			Description: "Open byteclaw agent in terminal",
 			Action: func() {
 				s.requestStartTalk()
 			},
@@ -299,7 +300,7 @@ func (s *appState) viewGatewayLog() {
 }
 
 func (s *appState) selectedModelName() string {
-	modelName := strings.TrimSpace(s.config.Agents.Defaults.Model)
+	modelName := strings.TrimSpace(s.config.Agents.Defaults.GetModelName())
 	if modelName == "" {
 		return ""
 	}
@@ -346,7 +347,8 @@ func (s *appState) startTalk() {
 		return
 	}
 	s.app.Suspend(func() {
-		cmd := exec.Command("picoclaw", "agent")
+		execPath := locateByteClaw()
+		cmd := exec.Command(execPath, "agent")
 		cmd.Stdin = os.Stdin
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
@@ -367,7 +369,8 @@ func (s *appState) startGateway() {
 		return
 	}
 	_ = stopGatewayProcess()
-	cmd := exec.Command("picoclaw", "gateway")
+	execPath := locateByteClaw()
+	cmd := exec.Command(execPath, "gateway")
 	logFile, err := os.OpenFile(s.logPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0o644)
 	if err != nil {
 		s.showMessage("Gateway failed", err.Error())
@@ -397,7 +400,7 @@ func (s *appState) isGatewayRunning() bool {
 }
 
 func (s *appState) validateAgentModel() error {
-	modelName := strings.TrimSpace(s.config.Agents.Defaults.Model)
+	modelName := strings.TrimSpace(s.config.Agents.Defaults.GetModelName())
 	if modelName == "" {
 		return nil
 	}
@@ -406,7 +409,7 @@ func (s *appState) validateAgentModel() error {
 }
 
 func (s *appState) isActiveModelValid() bool {
-	modelName := strings.TrimSpace(s.config.Agents.Defaults.Model)
+	modelName := strings.TrimSpace(s.config.Agents.Defaults.GetModelName())
 	if modelName == "" {
 		return false
 	}
@@ -503,4 +506,40 @@ func writeOriginalConfig(path string, data []byte) error {
 
 func writeBackupConfig(path string, data []byte) error {
 	return os.WriteFile(path, data, 0o600)
+}
+
+// locateByteClaw attempts to find the byteclaw executable in common locations.
+func locateByteClaw() string {
+	binName := "byteclaw"
+	if runtime.GOOS == "windows" {
+		binName += ".exe"
+	}
+
+	// 1. Try same directory as current launcher-tui executable
+	if exe, err := os.Executable(); err == nil {
+		candidate := filepath.Join(filepath.Dir(exe), binName)
+		if info, err := os.Stat(candidate); err == nil && !info.IsDir() {
+			return candidate
+		}
+	}
+
+	// 2. Try Current Working Directory
+	if info, err := os.Stat(binName); err == nil && !info.IsDir() {
+		if abs, err := filepath.Abs(binName); err == nil {
+			return abs
+		}
+		return binName
+	}
+
+	// 3. Try build directory relative to CWD
+	buildCandidate := filepath.Join("build", binName)
+	if info, err := os.Stat(buildCandidate); err == nil && !info.IsDir() {
+		if abs, err := filepath.Abs(buildCandidate); err == nil {
+			return abs
+		}
+		return buildCandidate
+	}
+
+	// 4. Fallback to system PATH
+	return "byteclaw"
 }

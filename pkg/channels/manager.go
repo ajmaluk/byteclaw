@@ -1,8 +1,8 @@
-// PicoClaw - Ultra-lightweight personal AI agent
+// ByteClaw - Ultra-lightweight personal AI agent
 // Inspired by and based on nanobot: https://github.com/HKUDS/nanobot
 // License: MIT
 //
-// Copyright (c) 2026 PicoClaw contributors
+// Copyright (c) 2026 ByteClaw contributors
 
 package channels
 
@@ -263,8 +263,8 @@ func (m *Manager) initChannels() error {
 		m.initChannel("wecom_app", "WeCom App")
 	}
 
-	if m.config.Channels.Pico.Enabled && m.config.Channels.Pico.Token != "" {
-		m.initChannel("pico", "Pico")
+	if m.config.Channels.Byte.Enabled && m.config.Channels.Byte.Token != "" {
+		m.initChannel("byte", "Byte")
 	}
 
 	logger.InfoCF("channels", "Channel initialization completed", map[string]any{

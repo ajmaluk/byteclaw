@@ -180,7 +180,7 @@ func handleGoogleAntigravityLogin(w http.ResponseWriter, r *http.Request, config
 		return
 	}
 
-	// Build redirect URI pointing to picoclaw-launcher's own callback
+	// Build redirect URI pointing to byteclaw-launcher's own callback
 	scheme := "http"
 	redirectURI := fmt.Sprintf("%s://%s/auth/callback", scheme, r.Host)
 
@@ -273,7 +273,7 @@ func handleOAuthCallback(w http.ResponseWriter, r *http.Request) {
 
 	updateConfigAfterLogin(session.ConfigPath, session.Provider, cred)
 
-	// Redirect back to picoclaw-launcher UI
+	// Redirect back to byteclaw-launcher UI
 	w.Header().Set("Content-Type", "text/html")
 	fmt.Fprintf(w, `<html><body>
 		<h2>Authentication successful!</h2>

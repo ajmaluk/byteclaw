@@ -10,7 +10,7 @@
 ## Config Setup
 - Default config location: `~/.byteclaw/config.json`
 - Override with `BYTECLAW_CONFIG=/path/to/config.json`
-- Start from example: copy [config/config.example.json](file:///Users/uk/Development/picoclaw/config/config.example.json) to `~/.picoclaw/config.json`, then fill:
+- Start from example: copy [config/config.example.json](file:///Users/uk/Development/byteclaw/config/config.example.json) to `~/.byteclaw/config.json`, then fill:
   - model_list: your models and keys (model-centric)
   - agents.defaults: model_name, max_tokens, etc.
   - channels: enable and add tokens only for platforms you need
@@ -100,7 +100,7 @@ make test
 
 ```bash
 make uninstall      # remove binary
-make uninstall-all  # remove ~/.picoclaw workspace and data
+make uninstall-all  # remove ~/.byteclaw workspace and data
 ```
 
 ## Troubleshooting

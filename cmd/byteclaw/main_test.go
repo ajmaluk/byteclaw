@@ -11,14 +11,14 @@ import (
 	"github.com/ajmaluk/byteclaw/cmd/byteclaw/internal"
 )
 
-func TestNewPicoclawCommand(t *testing.T) {
-	cmd := NewPicoclawCommand()
+func TestNewByteclawCommand(t *testing.T) {
+	cmd := NewByteclawCommand()
 
 	require.NotNil(t, cmd)
 
-	short := fmt.Sprintf("%s picoclaw - Personal AI Assistant v%s\n\n", internal.Logo, internal.GetVersion())
+	short := fmt.Sprintf("%s byteclaw - Personal AI Assistant v%s\n\n", internal.Logo, internal.GetVersion())
 
-	assert.Equal(t, "picoclaw", cmd.Use)
+	assert.Equal(t, "byteclaw", cmd.Use)
 	assert.Equal(t, short, cmd.Short)
 
 	assert.True(t, cmd.HasSubCommands())

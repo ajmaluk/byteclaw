@@ -1,4 +1,4 @@
-package pico
+package byte
 
 import (
 	"context"
@@ -20,8 +20,8 @@ import (
 	"github.com/ajmaluk/byteclaw/pkg/logger"
 )
 
-// picoConn represents a single WebSocket connection.
-type picoConn struct {
+// byteConn represents a single WebSocket connection.
+type byteConn struct {
 	id        string
 	conn      *websocket.Conn
 	sessionID string
@@ -30,7 +30,7 @@ type picoConn struct {
 }
 
 // writeJSON sends a JSON message to the connection with write locking.
-func (pc *picoConn) writeJSON(v any) error {
+func (pc *byteConn) writeJSON(v any) error {
 	if pc.closed.Load() {
 		return fmt.Errorf("connection closed")
 	}
@@ -40,31 +40,31 @@ func (pc *picoConn) writeJSON(v any) error {
 }
 
 // close closes the connection.
-func (pc *picoConn) close() {
+func (pc *byteConn) close() {
 	if pc.closed.CompareAndSwap(false, true) {
 		pc.conn.Close()
 	}
 }
 
-// PicoChannel implements the native Pico Protocol WebSocket channel.
+// ByteChannel implements the native Byte Protocol WebSocket channel.
 // It serves as the reference implementation for all optional capability interfaces.
-type PicoChannel struct {
+type ByteChannel struct {
 	*channels.BaseChannel
-	config      config.PicoConfig
+	config      config.ByteConfig
 	upgrader    websocket.Upgrader
-	connections sync.Map // connID → *picoConn
+	connections sync.Map // connID → *byteConn
 	connCount   atomic.Int32
 	ctx         context.Context
 	cancel      context.CancelFunc
 }
 
-// NewPicoChannel creates a new Pico Protocol channel.
-func NewPicoChannel(cfg config.PicoConfig, messageBus *bus.MessageBus) (*PicoChannel, error) {
+// NewByteChannel creates a new Byte Protocol channel.
+func NewByteChannel(cfg config.ByteConfig, messageBus *bus.MessageBus) (*ByteChannel, error) {
 	if cfg.Token == "" {
-		return nil, fmt.Errorf("pico token is required")
+		return nil, fmt.Errorf("byte token is required")
 	}
 
-	base := channels.NewBaseChannel("pico", cfg, messageBus, cfg.AllowFrom)
+	base := channels.NewBaseChannel("byte", cfg, messageBus, cfg.AllowFrom)
 
 	allowOrigins := cfg.AllowOrigins
 	checkOrigin := func(r *http.Request) bool {
@@ -80,7 +80,7 @@ func NewPicoChannel(cfg config.PicoConfig, messageBus *bus.MessageBus) (*PicoCha
 		return false
 	}
 
-	return &PicoChannel{
+	return &ByteChannel{
 		BaseChannel: base,
 		config:      cfg,
 		upgrader: websocket.Upgrader{
@@ -92,22 +92,22 @@ func NewPicoChannel(cfg config.PicoConfig, messageBus *bus.MessageBus) (*PicoCha
 }
 
 // Start implements Channel.
-func (c *PicoChannel) Start(ctx context.Context) error {
-	logger.InfoC("pico", "Starting Pico Protocol channel")
+func (c *ByteChannel) Start(ctx context.Context) error {
+	logger.InfoC("byte", "Starting Byte Protocol channel")
 	c.ctx, c.cancel = context.WithCancel(ctx)
 	c.SetRunning(true)
-	logger.InfoC("pico", "Pico Protocol channel started")
+	logger.InfoC("byte", "Byte Protocol channel started")
 	return nil
 }
 
 // Stop implements Channel.
-func (c *PicoChannel) Stop(ctx context.Context) error {
-	logger.InfoC("pico", "Stopping Pico Protocol channel")
+func (c *ByteChannel) Stop(ctx context.Context) error {
+	logger.InfoC("byte", "Stopping Byte Protocol channel")
 	c.SetRunning(false)
 
 	// Close all connections
 	c.connections.Range(func(key, value any) bool {
-		if pc, ok := value.(*picoConn); ok {
+		if pc, ok := value.(*byteConn); ok {
 			pc.close()
 		}
 		c.connections.Delete(key)
@@ -118,16 +118,16 @@ func (c *PicoChannel) Stop(ctx context.Context) error {
 		c.cancel()
 	}
 
-	logger.InfoC("pico", "Pico Protocol channel stopped")
+	logger.InfoC("byte", "Byte Protocol channel stopped")
 	return nil
 }
 
 // WebhookPath implements channels.WebhookHandler.
-func (c *PicoChannel) WebhookPath() string { return "/pico/" }
+func (c *ByteChannel) WebhookPath() string { return "/byte/" }
 
 // ServeHTTP implements http.Handler for the shared HTTP server.
-func (c *PicoChannel) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	path := strings.TrimPrefix(r.URL.Path, "/pico")
+func (c *ByteChannel) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	path := strings.TrimPrefix(r.URL.Path, "/byte")
 
 	switch {
 	case path == "/ws" || path == "/ws/":
@@ -138,7 +138,7 @@ func (c *PicoChannel) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 // Send implements Channel — sends a message to the appropriate WebSocket connection.
-func (c *PicoChannel) Send(ctx context.Context, msg bus.OutboundMessage) error {
+func (c *ByteChannel) Send(ctx context.Context, msg bus.OutboundMessage) error {
 	if !c.IsRunning() {
 		return channels.ErrNotRunning
 	}
@@ -151,7 +151,7 @@ func (c *PicoChannel) Send(ctx context.Context, msg bus.OutboundMessage) error {
 }
 
 // EditMessage implements channels.MessageEditor.
-func (c *PicoChannel) EditMessage(ctx context.Context, chatID string, messageID string, content string) error {
+func (c *ByteChannel) EditMessage(ctx context.Context, chatID string, messageID string, content string) error {
 	outMsg := newMessage(TypeMessageUpdate, map[string]any{
 		"message_id": messageID,
 		"content":    content,
@@ -160,7 +160,7 @@ func (c *PicoChannel) EditMessage(ctx context.Context, chatID string, messageID 
 }
 
 // StartTyping implements channels.TypingCapable.
-func (c *PicoChannel) StartTyping(ctx context.Context, chatID string) (func(), error) {
+func (c *ByteChannel) StartTyping(ctx context.Context, chatID string) (func(), error) {
 	startMsg := newMessage(TypeTypingStart, nil)
 	if err := c.broadcastToSession(chatID, startMsg); err != nil {
 		return func() {}, err
@@ -172,9 +172,9 @@ func (c *PicoChannel) StartTyping(ctx context.Context, chatID string) (func(), e
 }
 
 // SendPlaceholder implements channels.PlaceholderCapable.
-// It sends a placeholder message via the Pico Protocol that will later be
+// It sends a placeholder message via the Byte Protocol that will later be
 // edited to the actual response via EditMessage (channels.MessageEditor).
-func (c *PicoChannel) SendPlaceholder(ctx context.Context, chatID string) (string, error) {
+func (c *ByteChannel) SendPlaceholder(ctx context.Context, chatID string) (string, error) {
 	if !c.config.Placeholder.Enabled {
 		return "", nil
 	}
@@ -198,20 +198,20 @@ func (c *PicoChannel) SendPlaceholder(ctx context.Context, chatID string) (strin
 }
 
 // broadcastToSession sends a message to all connections with a matching session.
-func (c *PicoChannel) broadcastToSession(chatID string, msg PicoMessage) error {
-	// chatID format: "pico:<sessionID>"
-	sessionID := strings.TrimPrefix(chatID, "pico:")
+func (c *ByteChannel) broadcastToSession(chatID string, msg ByteMessage) error {
+	// chatID format: "byte:<sessionID>"
+	sessionID := strings.TrimPrefix(chatID, "byte:")
 	msg.SessionID = sessionID
 
 	var sent bool
 	c.connections.Range(func(key, value any) bool {
-		pc, ok := value.(*picoConn)
+		pc, ok := value.(*byteConn)
 		if !ok {
 			return true
 		}
 		if pc.sessionID == sessionID {
 			if err := pc.writeJSON(msg); err != nil {
-				logger.DebugCF("pico", "Write to connection failed", map[string]any{
+				logger.DebugCF("byte", "Write to connection failed", map[string]any{
 					"conn_id": pc.id,
 					"error":   err.Error(),
 				})
@@ -229,7 +229,7 @@ func (c *PicoChannel) broadcastToSession(chatID string, msg PicoMessage) error {
 }
 
 // handleWebSocket upgrades the HTTP connection and manages the WebSocket lifecycle.
-func (c *PicoChannel) handleWebSocket(w http.ResponseWriter, r *http.Request) {
+func (c *ByteChannel) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 	if !c.IsRunning() {
 		http.Error(w, "channel not running", http.StatusServiceUnavailable)
 		return
@@ -253,7 +253,7 @@ func (c *PicoChannel) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 
 	conn, err := c.upgrader.Upgrade(w, r, nil)
 	if err != nil {
-		logger.ErrorCF("pico", "WebSocket upgrade failed", map[string]any{
+		logger.ErrorCF("byte", "WebSocket upgrade failed", map[string]any{
 			"error": err.Error(),
 		})
 		return
@@ -265,7 +265,7 @@ func (c *PicoChannel) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 		sessionID = uuid.New().String()
 	}
 
-	pc := &picoConn{
+	pc := &byteConn{
 		id:        uuid.New().String(),
 		conn:      conn,
 		sessionID: sessionID,
@@ -274,7 +274,7 @@ func (c *PicoChannel) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 	c.connections.Store(pc.id, pc)
 	c.connCount.Add(1)
 
-	logger.InfoCF("pico", "WebSocket client connected", map[string]any{
+	logger.InfoCF("byte", "WebSocket client connected", map[string]any{
 		"conn_id":    pc.id,
 		"session_id": sessionID,
 	})
@@ -284,7 +284,7 @@ func (c *PicoChannel) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 
 // authenticate checks the Bearer token from the Authorization header.
 // Query parameter authentication is only allowed when AllowTokenQuery is explicitly enabled.
-func (c *PicoChannel) authenticate(r *http.Request) bool {
+func (c *ByteChannel) authenticate(r *http.Request) bool {
 	token := c.config.Token
 	if token == "" {
 		return false
@@ -309,12 +309,12 @@ func (c *PicoChannel) authenticate(r *http.Request) bool {
 }
 
 // readLoop reads messages from a WebSocket connection.
-func (c *PicoChannel) readLoop(pc *picoConn) {
+func (c *ByteChannel) readLoop(pc *byteConn) {
 	defer func() {
 		pc.close()
 		c.connections.Delete(pc.id)
 		c.connCount.Add(-1)
-		logger.InfoCF("pico", "WebSocket client disconnected", map[string]any{
+		logger.InfoCF("byte", "WebSocket client disconnected", map[string]any{
 			"conn_id":    pc.id,
 			"session_id": pc.sessionID,
 		})
@@ -348,7 +348,7 @@ func (c *PicoChannel) readLoop(pc *picoConn) {
 		_, rawMsg, err := pc.conn.ReadMessage()
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseNormalClosure) {
-				logger.DebugCF("pico", "WebSocket read error", map[string]any{
+				logger.DebugCF("byte", "WebSocket read error", map[string]any{
 					"conn_id": pc.id,
 					"error":   err.Error(),
 				})
@@ -358,7 +358,7 @@ func (c *PicoChannel) readLoop(pc *picoConn) {
 
 		_ = pc.conn.SetReadDeadline(time.Now().Add(readTimeout))
 
-		var msg PicoMessage
+		var msg ByteMessage
 		if err := json.Unmarshal(rawMsg, &msg); err != nil {
 			errMsg := newError("invalid_message", "failed to parse message")
 			pc.writeJSON(errMsg)
@@ -370,7 +370,7 @@ func (c *PicoChannel) readLoop(pc *picoConn) {
 }
 
 // pingLoop sends periodic ping frames to keep the connection alive.
-func (c *PicoChannel) pingLoop(pc *picoConn, interval time.Duration) {
+func (c *ByteChannel) pingLoop(pc *byteConn, interval time.Duration) {
 	ticker := time.NewTicker(interval)
 	defer ticker.Stop()
 
@@ -392,8 +392,8 @@ func (c *PicoChannel) pingLoop(pc *picoConn, interval time.Duration) {
 	}
 }
 
-// handleMessage processes an inbound Pico Protocol message.
-func (c *PicoChannel) handleMessage(pc *picoConn, msg PicoMessage) {
+// handleMessage processes an inbound Byte Protocol message.
+func (c *ByteChannel) handleMessage(pc *byteConn, msg ByteMessage) {
 	switch msg.Type {
 	case TypePing:
 		pong := newMessage(TypePong, nil)
@@ -410,7 +410,7 @@ func (c *PicoChannel) handleMessage(pc *picoConn, msg PicoMessage) {
 }
 
 // handleMessageSend processes an inbound message.send from a client.
-func (c *PicoChannel) handleMessageSend(pc *picoConn, msg PicoMessage) {
+func (c *ByteChannel) handleMessageSend(pc *byteConn, msg ByteMessage) {
 	content, _ := msg.Payload["content"].(string)
 	if strings.TrimSpace(content) == "" {
 		errMsg := newError("empty_content", "message content is empty")
@@ -423,26 +423,26 @@ func (c *PicoChannel) handleMessageSend(pc *picoConn, msg PicoMessage) {
 		sessionID = pc.sessionID
 	}
 
-	chatID := "pico:" + sessionID
-	senderID := "pico-user"
+	chatID := "byte:" + sessionID
+	senderID := "byte-user"
 
-	peer := bus.Peer{Kind: "direct", ID: "pico:" + sessionID}
+	peer := bus.Peer{Kind: "direct", ID: "byte:" + sessionID}
 
 	metadata := map[string]string{
-		"platform":   "pico",
+		"platform":   "byte",
 		"session_id": sessionID,
 		"conn_id":    pc.id,
 	}
 
-	logger.DebugCF("pico", "Received message", map[string]any{
+	logger.DebugCF("byte", "Received message", map[string]any{
 		"session_id": sessionID,
 		"preview":    truncate(content, 50),
 	})
 
 	sender := bus.SenderInfo{
-		Platform:    "pico",
+		Platform:    "byte",
 		PlatformID:  senderID,
-		CanonicalID: identity.BuildCanonicalID("pico", senderID),
+		CanonicalID: identity.BuildCanonicalID("byte", senderID),
 	}
 
 	if !c.IsAllowedSender(sender) {

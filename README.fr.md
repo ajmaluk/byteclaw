@@ -1,5 +1,5 @@
 <div align="center">
-<img src="assets/logo.jpg" alt="ByteClaw" width="512">
+<img src="assets/logo.png" alt="ByteClaw" width="512">
 
 <h1>ByteClaw : Assistant IA ultra-efficace en Go</h1>
 
@@ -18,7 +18,7 @@
 
 ---
 
-🦐 **PicoClaw** est un assistant personnel IA ultra-léger inspiré de [nanobot](https://github.com/HKUDS/nanobot), entièrement réécrit en **Go** via un processus d'auto-amorçage (self-bootstrapping) — où l'agent IA lui-même a piloté l'intégralité de la migration architecturale et de l'optimisation du code.
+🤖 **ByteClaw** est un assistant personnel IA ultra-léger inspiré de [nanobot](https://github.com/HKUDS/nanobot), entièrement réécrit en **Go** via un processus d'auto-amorçage (self-bootstrapping) — où l'agent IA lui-même a piloté l'intégralité de la migration architecturale et de l'optimisation du code.
 
 ⚡️ **Extrêmement léger :** Fonctionne sur du matériel à seulement **10$** avec **<10 Mo** de RAM. C'est 99% de mémoire en moins qu'OpenClaw et 98% moins cher qu'un Mac mini !
 
@@ -26,7 +26,7 @@
   <tr align="center">
     <td align="center" valign="top">
       <p align="center">
-        <img src="assets/picoclaw_mem.gif" width="360" height="240">
+        <img src="assets/byteclaw_mem.gif" width="360" height="240">
       </p>
     </td>
     <td align="center" valign="top">
@@ -40,21 +40,21 @@
 > [!CAUTION]
 > **🚨 SÉCURITÉ & CANAUX OFFICIELS**
 >
-> * **PAS DE CRYPTO :** PicoClaw n'a **AUCUN** token/jeton officiel. Toute annonce sur `pump.fun` ou d'autres plateformes de trading est une **ARNAQUE**.
-> * **DOMAINE OFFICIEL :** Le **SEUL** site officiel est **[picoclaw.io](https://picoclaw.io)**, et le site de l'entreprise est **[sipeed.com](https://sipeed.com)**.
+> * **PAS DE CRYPTO :** ByteClaw n'a **AUCUN** token/jeton officiel. Toute annonce sur `pump.fun` ou d'autres plateformes de trading est une **ARNAQUE**.
+> * **DOMAINE OFFICIEL :** Le **SEUL** site officiel est **[byteclaw.io](https://byteclaw.io)**, et le site de l'entreprise est **[ajmaluk.com](https://ajmaluk.com)**.
 > * **Attention :** De nombreux domaines `.ai/.org/.com/.net/...` sont enregistrés par des tiers et ne nous appartiennent pas.
-> * **Attention :** PicoClaw est en phase de développement précoce et peut présenter des problèmes de sécurité réseau non résolus. Ne déployez pas en environnement de production avant la version v1.0.
-> * **Note :** PicoClaw a récemment fusionné de nombreuses PR, ce qui peut entraîner une empreinte mémoire plus importante (10–20 Mo) dans les dernières versions. Nous prévoyons de prioriser l'optimisation des ressources dès que l'ensemble des fonctionnalités sera stabilisé.
+> * **Attention :** ByteClaw est en phase de développement précoce et peut présenter des problèmes de sécurité réseau non résolus. Ne déployez pas en environnement de production avant la version v1.0.
+> * **Note :** ByteClaw a récemment fusionné de nombreuses PR, ce qui peut entraîner une empreinte mémoire plus importante (10–20 Mo) dans les dernières versions. Nous prévoyons de prioriser l'optimisation des ressources dès que l'ensemble des fonctionnalités sera stabilisé.
 
 
 ## 📢 Actualités
 
-2026-02-16 🎉 PicoClaw a atteint 12K étoiles en une semaine ! Merci à tous pour votre soutien ! PicoClaw grandit plus vite que nous ne l'avions jamais imaginé. Vu le volume élevé de PR, nous avons un besoin urgent de mainteneurs communautaires. Nos rôles de bénévoles et notre feuille de route sont officiellement publiés [ici](docs/ROADMAP.md) — nous avons hâte de vous accueillir !
+2026-02-16 🎉 ByteClaw a atteint 12K étoiles en une semaine ! Merci à tous pour votre soutien ! ByteClaw grandit plus vite que nous ne l'avions jamais imaginé. Vu le volume élevé de PR, nous avons un besoin urgent de mainteneurs communautaires. Nos rôles de bénévoles et notre feuille de route sont officiellement publiés [ici](docs/ROADMAP.md) — nous avons hâte de vous accueillir !
 
-2026-02-13 🎉 PicoClaw a atteint 5000 étoiles en 4 jours ! Merci à la communauté ! Nous finalisons la **Feuille de Route du Projet** et mettons en place le **Groupe de Développeurs** pour accélérer le développement de PicoClaw.
+2026-02-13 🎉 ByteClaw a atteint 5000 étoiles en 4 jours ! Merci à la communauté ! Nous finalisons la **Feuille de Route du Projet** et mettons en place le **Groupe de Développeurs** pour accélérer le développement de ByteClaw.
 🚀 **Appel à l'action :** Soumettez vos demandes de fonctionnalités dans les GitHub Discussions. Nous les examinerons et les prioriserons lors de notre prochaine réunion hebdomadaire.
 
-2026-02-09 🎉 PicoClaw est lancé ! Construit en 1 jour pour apporter les Agents IA au matériel à 10$ avec <10 Mo de RAM. 🦐 PicoClaw, c'est parti !
+2026-02-09 🎉 ByteClaw est lancé ! Construit en 1 jour pour apporter les Agents IA au matériel à 10$ avec <10 Mo de RAM. 🤖 ByteClaw, c'est parti !
 
 ## ✨ Fonctionnalités
 
@@ -68,14 +68,14 @@
 
 🤖 **Auto-Construit par l'IA** : Implémentation native en Go de manière autonome — 95% du cœur généré par l'Agent avec affinement humain dans la boucle.
 
-|                               | OpenClaw      | NanoBot                  | **PicoClaw**                              |
+|                               | OpenClaw      | NanoBot                  | **ByteClaw**                              |
 | ----------------------------- | ------------- | ------------------------ | ----------------------------------------- |
 | **Langage**                   | TypeScript    | Python                   | **Go**                                    |
 | **RAM**                       | >1 Go         | >100 Mo                  | **< 10 Mo**                               |
 | **Démarrage**</br>(cœur 0,8 GHz) | >500s     | >30s                     | **<1s**                                   |
 | **Coût**                      | Mac Mini 599$ | La plupart des SBC Linux </br>~50$ | **N'importe quelle carte Linux**</br>**À partir de 10$** |
 
-<img src="assets/compare.jpg" alt="PicoClaw" width="512">
+<img src="assets/compare.png" alt="ByteClaw" width="512">
 
 ## 🦾 Démonstration
 
@@ -88,9 +88,9 @@
     <th><p align="center">🔎 Recherche Web & Apprentissage</p></th>
   </tr>
   <tr>
-    <td align="center"><p align="center"><img src="assets/picoclaw_code.gif" width="240" height="180"></p></td>
-    <td align="center"><p align="center"><img src="assets/picoclaw_memory.gif" width="240" height="180"></p></td>
-    <td align="center"><p align="center"><img src="assets/picoclaw_search.gif" width="240" height="180"></p></td>
+    <td align="center"><p align="center"><img src="assets/byteclaw_code.gif" width="240" height="180"></p></td>
+    <td align="center"><p align="center"><img src="assets/byteclaw_memory.gif" width="240" height="180"></p></td>
+    <td align="center"><p align="center"><img src="assets/byteclaw_search.gif" width="240" height="180"></p></td>
   </tr>
   <tr>
     <td align="center">Développer • Déployer • Mettre à l'échelle</td>
@@ -101,26 +101,26 @@
 
 ### 📱 Utiliser sur d'anciens téléphones Android
 
-Donnez une seconde vie à votre téléphone d'il y a dix ans ! Transformez-le en assistant IA intelligent avec PicoClaw. Démarrage rapide :
+Donnez une seconde vie à votre téléphone d'il y a dix ans ! Transformez-le en assistant IA intelligent avec ByteClaw. Démarrage rapide :
 
 1. **Installez Termux** (disponible sur F-Droid ou Google Play).
 2. **Exécutez les commandes**
 
 ```bash
 # Note : Remplacez v0.1.1 par la dernière version depuis la page des Releases
-wget https://github.com/sipeed/picoclaw/releases/download/v0.1.1/picoclaw-linux-arm64
-chmod +x picoclaw-linux-arm64
+wget https://github.com/ajmaluk/byteclaw/releases/download/v0.1.1/byteclaw-linux-arm64
+chmod +x byteclaw-linux-arm64
 pkg install proot
-termux-chroot ./picoclaw-linux-arm64 onboard
+termux-chroot ./byteclaw-linux-arm64 onboard
 ```
 
 Puis suivez les instructions de la section « Démarrage Rapide » pour terminer la configuration !
 
-<img src="assets/termux.jpg" alt="PicoClaw" width="512">
+<img src="assets/termux.png" alt="ByteClaw" width="512">
 
 ### 🐜 Déploiement Innovant à Faible Empreinte
 
-PicoClaw peut être déployé sur pratiquement n'importe quel appareil Linux !
+ByteClaw peut être déployé sur pratiquement n'importe quel appareil Linux !
 
 - 9,9$ [LicheeRV-Nano](https://www.aliexpress.com/item/1005006519668532.html) version E (Ethernet) ou W (WiFi6), pour un Assistant Domotique Minimaliste
 - 30~50$ [NanoKVM](https://www.aliexpress.com/item/1005007369816019.html), ou 100$ [NanoKVM-Pro](https://www.aliexpress.com/item/1005010048471263.html) pour la Maintenance Automatisée de Serveurs
@@ -134,14 +134,14 @@ PicoClaw peut être déployé sur pratiquement n'importe quel appareil Linux !
 
 ### Installer avec un binaire précompilé
 
-Téléchargez le binaire pour votre plateforme depuis la page des [releases](https://github.com/sipeed/picoclaw/releases).
+Téléchargez le binaire pour votre plateforme depuis la page des [releases](https://github.com/ajmaluk/byteclaw/releases).
 
 ### Installer depuis les sources (dernières fonctionnalités, recommandé pour le développement)
 
 ```bash
-git clone https://github.com/sipeed/picoclaw.git
+git clone https://github.com/ajmaluk/byteclaw.git
 
-cd picoclaw
+cd byteclaw
 make deps
 
 # Compiler, pas besoin d'installer
@@ -156,12 +156,12 @@ make install
 
 ## 🐳 Docker Compose
 
-Vous pouvez également exécuter PicoClaw avec Docker Compose sans rien installer localement.
+Vous pouvez également exécuter ByteClaw avec Docker Compose sans rien installer localement.
 
 ```bash
 # 1. Clonez ce dépôt
-git clone https://github.com/sipeed/picoclaw.git
-cd picoclaw
+git clone https://github.com/ajmaluk/byteclaw.git
+cd byteclaw
 
 # 2. Premier lancement — génère docker/data/config.json puis s'arrête
 docker compose -f docker/docker-compose.yml --profile gateway up
@@ -175,11 +175,11 @@ docker compose -f docker/docker-compose.yml --profile gateway up -d
 ```
 
 > [!TIP]
-> **Utilisateurs Docker** : Par défaut, le Gateway écoute sur `127.0.0.1`, ce qui n'est pas accessible depuis l'hôte. Si vous avez besoin d'accéder aux endpoints de santé ou d'exposer des ports, définissez `PICOCLAW_GATEWAY_HOST=0.0.0.0` dans votre environnement ou mettez à jour `config.json`.
+> **Utilisateurs Docker** : Par défaut, le Gateway écoute sur `127.0.0.1`, ce qui n'est pas accessible depuis l'hôte. Si vous avez besoin d'accéder aux endpoints de santé ou d'exposer des ports, définissez `BYTECLAW_GATEWAY_HOST=0.0.0.0` dans votre environnement ou mettez à jour `config.json`.
 
 ```bash
 # 5. Voir les logs
-docker compose -f docker/docker-compose.yml logs -f picoclaw-gateway
+docker compose -f docker/docker-compose.yml logs -f byteclaw-gateway
 
 # 6. Arrêter
 docker compose -f docker/docker-compose.yml --profile gateway down
@@ -189,10 +189,10 @@ docker compose -f docker/docker-compose.yml --profile gateway down
 
 ```bash
 # Poser une question
-docker compose -f docker/docker-compose.yml run --rm picoclaw-agent -m "Combien font 2+2 ?"
+docker compose -f docker/docker-compose.yml run --rm byteclaw-agent -m "Combien font 2+2 ?"
 
 # Mode interactif
-docker compose -f docker/docker-compose.yml run --rm picoclaw-agent
+docker compose -f docker/docker-compose.yml run --rm byteclaw-agent
 ```
 
 ### Mettre à jour
@@ -205,17 +205,17 @@ docker compose -f docker/docker-compose.yml --profile gateway up -d
 ### 🚀 Démarrage Rapide
 
 > [!TIP]
-> Configurez votre clé API dans `~/.picoclaw/config.json`.
+> Configurez votre clé API dans `~/.byteclaw/config.json`.
 > Obtenir des clés API : [OpenRouter](https://openrouter.ai/keys) (LLM) · [Zhipu](https://open.bigmodel.cn/usercenter/proj-mgmt/apikeys) (LLM)
 > La recherche web est **optionnelle** — obtenez gratuitement l'[API Brave Search](https://brave.com/search/api) (2000 requêtes gratuites/mois) ou utilisez le repli automatique intégré.
 
 **1. Initialiser**
 
 ```bash
-picoclaw onboard
+byteclaw onboard
 ```
 
-**2. Configurer** (`~/.picoclaw/config.json`)
+**2. Configurer** (`~/.byteclaw/config.json`)
 
 ```json
 {
@@ -257,7 +257,7 @@ picoclaw onboard
 ```
 
 > **Nouveau** : Le format de configuration `model_list` permet d'ajouter des fournisseurs sans modifier le code. Voir [Configuration de Modèle](#configuration-de-modèle-model_list) pour plus de détails.
-> `request_timeout` est optionnel et s'exprime en secondes. S'il est omis ou défini à `<= 0`, PicoClaw utilise le délai d'expiration par défaut (120s).
+> `request_timeout` est optionnel et s'exprime en secondes. S'il est omis ou défini à `<= 0`, ByteClaw utilise le délai d'expiration par défaut (120s).
 
 **3. Obtenir des Clés API**
 
@@ -269,7 +269,7 @@ picoclaw onboard
 **4. Discuter**
 
 ```bash
-picoclaw agent -m "Combien font 2+2 ?"
+byteclaw agent -m "Combien font 2+2 ?"
 ```
 
 Et voilà ! Vous avez un assistant IA fonctionnel en 2 minutes.
@@ -278,7 +278,7 @@ Et voilà ! Vous avez un assistant IA fonctionnel en 2 minutes.
 
 ## 💬 Applications de Chat
 
-Discutez avec votre PicoClaw via Telegram, Discord, DingTalk, LINE ou WeCom
+Discutez avec votre ByteClaw via Telegram, Discord, DingTalk, LINE ou WeCom
 
 | Canal        | Configuration                          |
 | ------------ | -------------------------------------- |
@@ -317,7 +317,7 @@ Discutez avec votre PicoClaw via Telegram, Discord, DingTalk, LINE ou WeCom
 **3. Lancer**
 
 ```bash
-picoclaw gateway
+byteclaw gateway
 ```
 
 </details>
@@ -365,7 +365,7 @@ picoclaw gateway
 **6. Lancer**
 
 ```bash
-picoclaw gateway
+byteclaw gateway
 ```
 
 </details>
@@ -398,7 +398,7 @@ picoclaw gateway
 **3. Lancer**
 
 ```bash
-picoclaw gateway
+byteclaw gateway
 ```
 
 </details>
@@ -432,7 +432,7 @@ picoclaw gateway
 **3. Lancer**
 
 ```bash
-picoclaw gateway
+byteclaw gateway
 ```
 
 </details>
@@ -478,19 +478,19 @@ Puis configurez l'URL du Webhook dans la LINE Developers Console sur `https://vo
 **4. Lancer**
 
 ```bash
-picoclaw gateway
+byteclaw gateway
 ```
 
 > Dans les discussions de groupe, le bot répond uniquement lorsqu'il est mentionné avec @. Les réponses citent le message original.
 
-> **Docker Compose** : Ajoutez `ports: ["18791:18791"]` au service `picoclaw-gateway` pour exposer le port du webhook.
+> **Docker Compose** : Ajoutez `ports: ["18791:18791"]` au service `byteclaw-gateway` pour exposer le port du webhook.
 
 </details>
 
 <details>
 <summary><b>WeCom (WeChat Work)</b></summary>
 
-PicoClaw prend en charge deux types d'intégration WeCom :
+ByteClaw prend en charge deux types d'intégration WeCom :
 
 **Option 1 : WeCom Bot (Robot Intelligent)** - Configuration plus facile, prend en charge les discussions de groupe
 **Option 2 : WeCom App (Application Personnalisée)** - Plus de fonctionnalités, messagerie proactive
@@ -561,7 +561,7 @@ Voir le [Guide de Configuration WeCom App](docs/wecom-app-configuration.md) pour
 **4. Lancer**
 
 ```bash
-picoclaw gateway
+byteclaw gateway
 ```
 
 > **Note** : WeCom App nécessite l'ouverture du port 18792 pour les callbacks webhook. Utilisez un proxy inverse pour HTTPS en production.
@@ -570,20 +570,20 @@ picoclaw gateway
 
 ## <img src="assets/clawdchat-icon.png" width="24" height="24" alt="ClawdChat"> Rejoignez le Réseau Social d'Agents
 
-Connectez PicoClaw au Réseau Social d'Agents simplement en envoyant un seul message via le CLI ou n'importe quelle application de chat intégrée.
+Connectez ByteClaw au Réseau Social d'Agents simplement en envoyant un seul message via le CLI ou n'importe quelle application de chat intégrée.
 
 **Lisez `https://clawdchat.ai/skill.md` et suivez les instructions pour rejoindre [ClawdChat.ai](https://clawdchat.ai)**
 
 ## ⚙️ Configuration
 
-Fichier de configuration : `~/.picoclaw/config.json`
+Fichier de configuration : `~/.byteclaw/config.json`
 
 ### Structure du Workspace
 
-PicoClaw stocke les données dans votre workspace configuré (par défaut : `~/.picoclaw/workspace`) :
+ByteClaw stocke les données dans votre workspace configuré (par défaut : `~/.byteclaw/workspace`) :
 
 ```
-~/.picoclaw/workspace/
+~/.byteclaw/workspace/
 ├── sessions/          # Sessions de conversation et historique
 ├── memory/           # Mémoire à long terme (MEMORY.md)
 ├── state/            # État persistant (dernier canal, etc.)
@@ -599,7 +599,7 @@ PicoClaw stocke les données dans votre workspace configuré (par défaut : `~/.
 
 ### 🔒 Bac à Sable de Sécurité
 
-PicoClaw s'exécute dans un environnement sandboxé par défaut. L'agent ne peut accéder aux fichiers et exécuter des commandes qu'au sein du workspace configuré.
+ByteClaw s'exécute dans un environnement sandboxé par défaut. L'agent ne peut accéder aux fichiers et exécuter des commandes qu'au sein du workspace configuré.
 
 #### Configuration par Défaut
 
@@ -607,7 +607,7 @@ PicoClaw s'exécute dans un environnement sandboxé par défaut. L'agent ne peut
 {
   "agents": {
     "defaults": {
-      "workspace": "~/.picoclaw/workspace",
+      "workspace": "~/.byteclaw/workspace",
       "restrict_to_workspace": true
     }
   }
@@ -616,7 +616,7 @@ PicoClaw s'exécute dans un environnement sandboxé par défaut. L'agent ne peut
 
 | Option | Par défaut | Description |
 |--------|------------|-------------|
-| `workspace` | `~/.picoclaw/workspace` | Répertoire de travail de l'agent |
+| `workspace` | `~/.byteclaw/workspace` | Répertoire de travail de l'agent |
 | `restrict_to_workspace` | `true` | Restreindre l'accès fichiers/commandes au workspace |
 
 #### Outils Protégés
@@ -674,7 +674,7 @@ Si vous avez besoin que l'agent accède à des chemins en dehors du workspace :
 **Méthode 2 : Variable d'environnement**
 
 ```bash
-export PICOCLAW_AGENTS_DEFAULTS_RESTRICT_TO_WORKSPACE=false
+export BYTECLAW_AGENTS_DEFAULTS_RESTRICT_TO_WORKSPACE=false
 ```
 
 > ⚠️ **Attention** : Désactiver cette restriction permet à l'agent d'accéder à n'importe quel chemin sur votre système. À utiliser avec précaution uniquement dans des environnements contrôlés.
@@ -693,7 +693,7 @@ Tous les chemins partagent la même restriction de workspace — il est impossib
 
 ### Heartbeat (Tâches Périodiques)
 
-PicoClaw peut exécuter des tâches périodiques automatiquement. Créez un fichier `HEARTBEAT.md` dans votre workspace :
+ByteClaw peut exécuter des tâches périodiques automatiquement. Créez un fichier `HEARTBEAT.md` dans votre workspace :
 
 ```markdown
 # Tâches Périodiques
@@ -765,8 +765,8 @@ Le sous-agent a accès aux outils (message, web_search, etc.) et peut communique
 
 **Variables d'environnement :**
 
-* `PICOCLAW_HEARTBEAT_ENABLED=false` pour désactiver
-* `PICOCLAW_HEARTBEAT_INTERVAL=60` pour modifier l'intervalle
+* `BYTECLAW_HEARTBEAT_ENABLED=false` pour désactiver
+* `BYTECLAW_HEARTBEAT_INTERVAL=60` pour modifier l'intervalle
 
 ### Fournisseurs
 
@@ -798,7 +798,7 @@ Le sous-agent a accès aux outils (message, web_search, etc.) et peut communique
 {
   "agents": {
     "defaults": {
-      "workspace": "~/.picoclaw/workspace",
+      "workspace": "~/.byteclaw/workspace",
       "model": "glm-4.7",
       "max_tokens": 8192,
       "temperature": 0.7,
@@ -817,7 +817,7 @@ Le sous-agent a accès aux outils (message, web_search, etc.) et peut communique
 **3. Lancer**
 
 ```bash
-picoclaw agent -m "Bonjour, comment ça va ?"
+byteclaw agent -m "Bonjour, comment ça va ?"
 ```
 
 </details>
@@ -896,7 +896,7 @@ picoclaw agent -m "Bonjour, comment ça va ?"
 
 ### Configuration de Modèle (model_list)
 
-> **Nouveau !** PicoClaw utilise désormais une approche de configuration **centrée sur le modèle**. Spécifiez simplement le format `fournisseur/modèle` (par exemple, `zhipu/glm-4.7`) pour ajouter de nouveaux fournisseurs—**aucune modification de code requise !**
+> **Nouveau !** ByteClaw utilise désormais une approche de configuration **centrée sur le modèle**. Spécifiez simplement le format `fournisseur/modèle` (par exemple, `zhipu/glm-4.7`) pour ajouter de nouveaux fournisseurs—**aucune modification de code requise !**
 
 Cette conception permet également le **support multi-agent** avec une sélection flexible de fournisseurs :
 
@@ -984,7 +984,7 @@ Cette conception permet également le **support multi-agent** avec une sélectio
   "auth_method": "oauth"
 }
 ```
-> Exécutez `picoclaw auth login --provider anthropic` pour configurer les identifiants OAuth.
+> Exécutez `byteclaw auth login --provider anthropic` pour configurer les identifiants OAuth.
 
 **Proxy/API personnalisée**
 ```json
@@ -999,7 +999,7 @@ Cette conception permet également le **support multi-agent** avec une sélectio
 
 #### Équilibrage de Charge
 
-Configurez plusieurs points de terminaison pour le même nom de modèle—PicoClaw utilisera automatiquement le round-robin entre eux :
+Configurez plusieurs points de terminaison pour le même nom de modèle—ByteClaw utilisera automatiquement le round-robin entre eux :
 
 ```json
 {
@@ -1066,23 +1066,23 @@ Pour le guide de migration détaillé, voir [docs/migration/model-list-migration
 
 | Commande                  | Description                           |
 | ------------------------- | ------------------------------------- |
-| `picoclaw onboard`        | Initialiser la configuration & le workspace |
-| `picoclaw agent -m "..."` | Discuter avec l'agent                 |
-| `picoclaw agent`          | Mode de discussion interactif         |
-| `picoclaw gateway`        | Démarrer la passerelle                |
-| `picoclaw status`         | Afficher le statut                    |
-| `picoclaw cron list`      | Lister toutes les tâches planifiées   |
-| `picoclaw cron add ...`   | Ajouter une tâche planifiée           |
+| `byteclaw onboard`        | Initialiser la configuration & le workspace |
+| `byteclaw agent -m "..."` | Discuter avec l'agent                 |
+| `byteclaw agent`          | Mode de discussion interactif         |
+| `byteclaw gateway`        | Démarrer la passerelle                |
+| `byteclaw status`         | Afficher le statut                    |
+| `byteclaw cron list`      | Lister toutes les tâches planifiées   |
+| `byteclaw cron add ...`   | Ajouter une tâche planifiée           |
 
 ### Tâches Planifiées / Rappels
 
-PicoClaw prend en charge les rappels planifiés et les tâches récurrentes via l'outil `cron` :
+ByteClaw prend en charge les rappels planifiés et les tâches récurrentes via l'outil `cron` :
 
 * **Rappels ponctuels** : « Rappelle-moi dans 10 minutes » → se déclenche une fois après 10 min
 * **Tâches récurrentes** : « Rappelle-moi toutes les 2 heures » → se déclenche toutes les 2 heures
 * **Expressions Cron** : « Rappelle-moi à 9h tous les jours » → utilise une expression cron
 
-Les tâches sont stockées dans `~/.picoclaw/workspace/cron/` et traitées automatiquement.
+Les tâches sont stockées dans `~/.byteclaw/workspace/cron/` et traitées automatiquement.
 
 ## 🤝 Contribuer & Feuille de Route
 
@@ -1096,20 +1096,20 @@ Groupes d'utilisateurs :
 
 Discord : <https://discord.gg/V4sAZ9XWpN>
 
-<img src="assets/wechat.png" alt="PicoClaw" width="512">
+<img src="assets/wechat.png" alt="ByteClaw" width="512">
 
 ## 🐛 Dépannage
 
 ### La recherche web affiche « API 配置问题 »
 
-C'est normal si vous n'avez pas encore configuré de clé API de recherche. PicoClaw fournira des liens utiles pour la recherche manuelle.
+C'est normal si vous n'avez pas encore configuré de clé API de recherche. ByteClaw fournira des liens utiles pour la recherche manuelle.
 
 Pour activer la recherche web :
 
 1. **Option 1 (Recommandé)** : Obtenez une clé API gratuite sur [https://brave.com/search/api](https://brave.com/search/api) (2000 requêtes gratuites/mois) pour les meilleurs résultats.
 2. **Option 2 (Sans carte bancaire)** : Si vous n'avez pas de clé, le système bascule automatiquement sur **DuckDuckGo** (aucune clé requise).
 
-Ajoutez la clé dans `~/.picoclaw/config.json` si vous utilisez Brave :
+Ajoutez la clé dans `~/.byteclaw/config.json` si vous utilisez Brave :
 
 ```json
 {
@@ -1135,7 +1135,7 @@ Certains fournisseurs (comme Zhipu) disposent d'un filtrage de contenu. Essayez 
 
 ### Le bot Telegram affiche « Conflict: terminated by other getUpdates »
 
-Cela se produit lorsqu'une autre instance du bot est en cours d'exécution. Assurez-vous qu'un seul `picoclaw gateway` fonctionne à la fois.
+Cela se produit lorsqu'une autre instance du bot est en cours d'exécution. Assurez-vous qu'un seul `byteclaw gateway` fonctionne à la fois.
 
 ---
 

@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/anthropics/anthropic-sdk-go"
-	anthropicoption "github.com/anthropics/anthropic-sdk-go/option"
+	anthrobyteption "github.com/anthropics/anthropic-sdk-go/option"
 )
 
 func TestBuildParams_BasicMessage(t *testing.T) {
@@ -264,8 +264,8 @@ func TestProvider_ChatUsesTokenSource(t *testing.T) {
 
 func createAnthropicTestClient(baseURL, token string) *anthropic.Client {
 	c := anthropic.NewClient(
-		anthropicoption.WithAuthToken(token),
-		anthropicoption.WithBaseURL(baseURL),
+		anthrobyteption.WithAuthToken(token),
+		anthrobyteption.WithBaseURL(baseURL),
 	)
 	return &c
 }

@@ -66,7 +66,7 @@ func TestGetConfig(t *testing.T) {
 
 func TestGetConfig_MissingFile_ReturnsDefault(t *testing.T) {
 	mux := http.NewServeMux()
-	RegisterConfigAPI(mux, "/tmp/nonexistent-picoclaw-launcher-test/config.json")
+	RegisterConfigAPI(mux, "/tmp/nonexistent-byteclaw-launcher-test/config.json")
 
 	req := httptest.NewRequest("GET", "/api/config", nil)
 	w := httptest.NewRecorder()
@@ -230,8 +230,8 @@ func TestDefaultConfigPath(t *testing.T) {
 	if path == "" {
 		t.Error("defaultConfigPath should not return empty")
 	}
-	if !strings.HasSuffix(path, filepath.Join(".picoclaw", "config.json")) {
-		t.Errorf("expected path ending with .picoclaw/config.json, got %q", path)
+	if !strings.HasSuffix(path, filepath.Join(".byteclaw", "config.json")) {
+		t.Errorf("expected path ending with .byteclaw/config.json, got %q", path)
 	}
 }
 

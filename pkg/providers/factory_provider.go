@@ -1,7 +1,7 @@
-// PicoClaw - Ultra-lightweight personal AI agent
+// ByteClaw - Ultra-lightweight personal AI agent
 // License: MIT
 //
-// Copyright (c) 2026 PicoClaw contributors
+// Copyright (c) 2026 ByteClaw contributors
 
 package providers
 
@@ -21,7 +21,7 @@ func createClaudeAuthProvider() (LLMProvider, error) {
 		return nil, fmt.Errorf("loading auth credentials: %w", err)
 	}
 	if cred == nil {
-		return nil, fmt.Errorf("no credentials for anthropic. Run: picoclaw auth login --provider anthropic")
+		return nil, fmt.Errorf("no credentials for anthropic. Run: byteclaw auth login --provider anthropic")
 	}
 	return NewClaudeProviderWithTokenSource(cred.AccessToken, createClaudeTokenSource()), nil
 }
@@ -33,7 +33,7 @@ func createCodexAuthProvider() (LLMProvider, error) {
 		return nil, fmt.Errorf("loading auth credentials: %w", err)
 	}
 	if cred == nil {
-		return nil, fmt.Errorf("no credentials for openai. Run: picoclaw auth login --provider openai")
+		return nil, fmt.Errorf("no credentials for openai. Run: byteclaw auth login --provider openai")
 	}
 	return NewCodexProviderWithTokenSource(cred.AccessToken, cred.AccountID, createCodexTokenSource()), nil
 }
@@ -92,7 +92,7 @@ func CreateProviderFromConfig(cfg *config.ModelConfig) (LLMProvider, string, err
 		}
 		rpm := cfg.RPM
 		if rpm == 0 {
-			if v := strings.TrimSpace(os.Getenv("PICOCLAW_PROVIDERS_DEFAULT_RPM")); v != "" {
+			if v := strings.TrimSpace(os.Getenv("BYTECLAW_PROVIDERS_DEFAULT_RPM")); v != "" {
 				if n, err := strconv.Atoi(v); err == nil && n > 0 {
 					rpm = n
 				}
@@ -124,7 +124,7 @@ func CreateProviderFromConfig(cfg *config.ModelConfig) (LLMProvider, string, err
 		}
 		rpm := cfg.RPM
 		if rpm == 0 {
-			if v := strings.TrimSpace(os.Getenv("PICOCLAW_PROVIDERS_DEFAULT_RPM")); v != "" {
+			if v := strings.TrimSpace(os.Getenv("BYTECLAW_PROVIDERS_DEFAULT_RPM")); v != "" {
 				if n, err := strconv.Atoi(v); err == nil && n > 0 {
 					rpm = n
 				}
@@ -162,7 +162,7 @@ func CreateProviderFromConfig(cfg *config.ModelConfig) (LLMProvider, string, err
 		}
 		rpm := cfg.RPM
 		if rpm == 0 {
-			if v := strings.TrimSpace(os.Getenv("PICOCLAW_PROVIDERS_DEFAULT_RPM")); v != "" {
+			if v := strings.TrimSpace(os.Getenv("BYTECLAW_PROVIDERS_DEFAULT_RPM")); v != "" {
 				if n, err := strconv.Atoi(v); err == nil && n > 0 {
 					rpm = n
 				}

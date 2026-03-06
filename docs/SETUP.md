@@ -37,6 +37,9 @@ export GOOGLE_OAUTH_CLIENT_SECRET=...
 export GOOGLE_OAUTH_PORT=51121
 ```
 
+### Advanced Configuration
+- `BYTECLAW_PROVIDERS_DEFAULT_RPM`: Set the default Requests Per Minute (RPM) for AI providers (e.g., `export BYTECLAW_PROVIDERS_DEFAULT_RPM=3`).
+
 ### Optional Text Proxy
 ```bash
 export BYTECLAW_TEXT_PROXY_URL=http://localhost:3002
@@ -52,5 +55,6 @@ export BYTECLAW_TEXT_PROXY_URL=http://localhost:3002
 - Tag `vX.Y.Z` to trigger GoReleaser.
 
 ## Troubleshooting
+- **UI Badges**: Look for status badges (Active, Expired, Pending) in the web launcher to verify provider connectivity.
 - Check CI badges and Actions logs.
 - Ensure no secrets are committed; use env vars.

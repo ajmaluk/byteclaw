@@ -11,7 +11,7 @@ func DefaultConfigPath() string {
 	if err != nil {
 		return "config.json"
 	}
-	return filepath.Join(home, ".picoclaw", "config.json")
+	return filepath.Join(home, ".byteclaw", "config.json")
 }
 
 func GetLocalIP() string {

@@ -19,7 +19,7 @@ import (
 	_ "github.com/ajmaluk/byteclaw/pkg/channels/line"
 	_ "github.com/ajmaluk/byteclaw/pkg/channels/maixcam"
 	_ "github.com/ajmaluk/byteclaw/pkg/channels/onebot"
-	_ "github.com/ajmaluk/byteclaw/pkg/channels/pico"
+	_ "github.com/ajmaluk/byteclaw/pkg/channels/byte"
 	_ "github.com/ajmaluk/byteclaw/pkg/channels/qq"
 	_ "github.com/ajmaluk/byteclaw/pkg/channels/slack"
 	_ "github.com/ajmaluk/byteclaw/pkg/channels/telegram"

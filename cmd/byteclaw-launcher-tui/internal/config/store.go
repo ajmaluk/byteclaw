@@ -5,11 +5,11 @@ import (
 	"os"
 	"path/filepath"
 
-	picoclawconfig "github.com/ajmaluk/byteclaw/pkg/config"
+	byteclawconfig "github.com/ajmaluk/byteclaw/pkg/config"
 )
 
 const (
-	configDirName  = ".picoclaw"
+	configDirName  = ".byteclaw"
 	configFileName = "config.json"
 )
 
@@ -29,15 +29,15 @@ func ConfigDir() (string, error) {
 	return filepath.Join(home, configDirName), nil
 }
 
-func Load() (*picoclawconfig.Config, error) {
+func Load() (*byteclawconfig.Config, error) {
 	path, err := ConfigPath()
 	if err != nil {
 		return nil, err
 	}
-	return picoclawconfig.LoadConfig(path)
+	return byteclawconfig.LoadConfig(path)
 }
 
-func Save(cfg *picoclawconfig.Config) error {
+func Save(cfg *byteclawconfig.Config) error {
 	if cfg == nil {
 		return errors.New("config is nil")
 	}
@@ -45,5 +45,5 @@ func Save(cfg *picoclawconfig.Config) error {
 	if err != nil {
 		return err
 	}
-	return picoclawconfig.SaveConfig(path, cfg)
+	return byteclawconfig.SaveConfig(path, cfg)
 }

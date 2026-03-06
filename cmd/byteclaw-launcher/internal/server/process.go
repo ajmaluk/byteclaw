@@ -21,7 +21,7 @@ import (
 // gatewayLogs stores captured stdout/stderr from the gateway process launched by the launcher.
 var gatewayLogs = NewLogBuffer(200)
 
-// RegisterProcessAPI registers endpoints to start, stop and check status of the picoclaw gateway.
+// RegisterProcessAPI registers endpoints to start, stop and check status of the byteclaw gateway.
 func RegisterProcessAPI(mux *http.ServeMux, absPath string) {
 	mux.HandleFunc("GET /api/process/status", func(w http.ResponseWriter, r *http.Request) {
 		handleStatusGateway(w, r, absPath)
@@ -30,24 +30,44 @@ func RegisterProcessAPI(mux *http.ServeMux, absPath string) {
 	mux.HandleFunc("POST /api/process/stop", handleStopGateway)
 }
 
-func handleStartGateway(w http.ResponseWriter, r *http.Request) {
-	// Locate picoclaw executable:
-	// 1. Try same directory as current executable
-	// 2. Fallback to just "picoclaw" (relies on $PATH)
-	execPath := "picoclaw"
+// locateByteClaw attempts to find the byteclaw executable in common locations.
+func locateByteClaw() string {
+	binName := "byteclaw"
+	if runtime.GOOS == "windows" {
+		binName += ".exe"
+	}
 
+	// 1. Try same directory as current launcher executable
 	if exe, err := os.Executable(); err == nil {
-		dir := filepath.Dir(exe)
-		candidate := filepath.Join(dir, "picoclaw")
-		if runtime.GOOS == "windows" {
-			candidate += ".exe"
-		}
-
+		candidate := filepath.Join(filepath.Dir(exe), binName)
 		if info, err := os.Stat(candidate); err == nil && !info.IsDir() {
-			execPath = candidate
+			return candidate
 		}
 	}
 
+	// 2. Try Current Working Directory
+	if info, err := os.Stat(binName); err == nil && !info.IsDir() {
+		if abs, err := filepath.Abs(binName); err == nil {
+			return abs
+		}
+		return binName
+	}
+
+	// 3. Try build directory relative to CWD
+	buildCandidate := filepath.Join("build", binName)
+	if info, err := os.Stat(buildCandidate); err == nil && !info.IsDir() {
+		if abs, err := filepath.Abs(buildCandidate); err == nil {
+			return abs
+		}
+		return buildCandidate
+	}
+
+	// 4. Fallback to system PATH
+	return "byteclaw"
+}
+
+func handleStartGateway(w http.ResponseWriter, r *http.Request) {
+	execPath := locateByteClaw()
 	cmd := exec.Command(execPath, "gateway")
 
 	stdoutPipe, err := cmd.StdoutPipe()
@@ -68,7 +88,7 @@ func handleStartGateway(w http.ResponseWriter, r *http.Request) {
 	gatewayLogs.Reset()
 
 	if err := cmd.Start(); err != nil {
-		log.Printf("Failed to start picoclaw gateway: %v\n", err)
+		log.Printf("Failed to start byteclaw gateway: %v\n", err)
 		http.Error(w, fmt.Sprintf("Failed to start gateway: %v", err), http.StatusInternalServerError)
 		return
 	}
@@ -84,7 +104,7 @@ func handleStartGateway(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 
-	log.Printf("Started picoclaw gateway (PID: %d) from %s\n", cmd.Process.Pid, execPath)
+	log.Printf("Started byteclaw gateway (PID: %d) from %s\n", cmd.Process.Pid, execPath)
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]any{
@@ -106,13 +126,13 @@ func scanPipe(r io.Reader, buf *LogBuffer) {
 func handleStopGateway(w http.ResponseWriter, r *http.Request) {
 	var err error
 	if runtime.GOOS == "windows" {
-		// Kill via taskkill finding picoclaw.exe (though it might kill this config tool if it's named picoclaw-launcher.exe...? No, /IM does exact match usually, but just to be safe let's stop exactly picoclaw.exe)
+		// Kill via taskkill finding byteclaw.exe (though it might kill this config tool if it's named byteclaw-launcher.exe...? No, /IM does exact match usually, but just to be safe let's stop exactly byteclaw.exe)
 		// Alternatively, we use powershell to kill processes with commandline containing 'gateway'
-		psCmd := `Get-WmiObject Win32_Process | Where-Object { $_.CommandLine -match 'picoclaw.*gateway' } | ForEach-Object { Stop-Process $_.ProcessId -Force }`
+		psCmd := `Get-WmiObject Win32_Process | Where-Object { $_.CommandLine -match 'byteclaw.*gateway' } | ForEach-Object { Stop-Process $_.ProcessId -Force }`
 		err = exec.Command("powershell", "-Command", psCmd).Run()
 	} else {
 		// Linux/macOS
-		err = exec.Command("pkill", "-f", "picoclaw gateway").Run()
+		err = exec.Command("pkill", "-f", "byteclaw gateway").Run()
 	}
 
 	if err != nil {
@@ -127,7 +147,7 @@ func handleStopGateway(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Printf("Stopped picoclaw gateway processes.\n")
+	log.Printf("Stopped byteclaw gateway processes.\n")
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{
 		"status": "ok",

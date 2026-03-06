@@ -10,7 +10,7 @@ func newListCommand(loaderFn func() (*skills.SkillsLoader, error)) *cobra.Comman
 	cmd := &cobra.Command{
 		Use:     "list",
 		Short:   "List installed skills",
-		Example: `picoclaw skills list`,
+		Example: `byteclaw skills list`,
 		RunE: func(_ *cobra.Command, _ []string) error {
 			loader, err := loaderFn()
 			if err != nil {

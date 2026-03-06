@@ -12,7 +12,7 @@ build/
 /byteclaw-test
 cmd/**/workspace
 
-# Picoclaw specific
+# Byteclaw specific
 
 # ByteClaw
 .byteclaw/

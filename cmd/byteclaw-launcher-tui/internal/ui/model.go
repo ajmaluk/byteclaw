@@ -10,7 +10,7 @@ import (
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
 
-	picoclawconfig "github.com/ajmaluk/byteclaw/pkg/config"
+	byteclawconfig "github.com/ajmaluk/byteclaw/pkg/config"
 )
 
 func (s *appState) modelMenu() tview.Primitive {
@@ -22,7 +22,7 @@ func (s *appState) modelMenu() tview.Primitive {
 			Description: "Append a new model entry",
 			Action: func() {
 				s.addModel(
-					picoclawconfig.ModelConfig{ModelName: "new-model", Model: "openai/gpt-5.2"},
+					byteclawconfig.ModelConfig{ModelName: "new-model", Model: "openai/gpt-5.2"},
 				)
 				s.push(
 					fmt.Sprintf("model-%d", len(s.config.ModelList)-1),
@@ -31,7 +31,7 @@ func (s *appState) modelMenu() tview.Primitive {
 			},
 		},
 	)
-	currentModel := strings.TrimSpace(s.config.Agents.Defaults.Model)
+	currentModel := strings.TrimSpace(s.config.Agents.Defaults.GetModelName())
 	for i := range s.config.ModelList {
 		index := i
 		model := s.config.ModelList[i]
@@ -89,9 +89,10 @@ func (s *appState) modelMenu() tview.Primitive {
 					)
 					return nil
 				}
+				s.config.Agents.Defaults.ModelName = model.ModelName
 				s.config.Agents.Defaults.Model = model.ModelName
 				s.dirty = true
-				refreshModelMenu(menu, s.config.Agents.Defaults.Model, s.config.ModelList)
+				refreshModelMenu(menu, s.config.Agents.Defaults.GetModelName(), s.config.ModelList)
 				refreshMainMenuIfPresent(s)
 			}
 			return nil
@@ -202,7 +203,7 @@ func addIntInput(form *tview.Form, label string, value int, onChange func(int)) 
 	})
 }
 
-func (s *appState) addModel(model picoclawconfig.ModelConfig) {
+func (s *appState) addModel(model byteclawconfig.ModelConfig) {
 	s.config.ModelList = append(s.config.ModelList, model)
 }
 
@@ -223,7 +224,7 @@ func modelStatusColor(valid bool, selected bool) *tcell.Color {
 	return &color
 }
 
-func refreshModelMenu(menu *Menu, currentModel string, models []picoclawconfig.ModelConfig) {
+func refreshModelMenu(menu *Menu, currentModel string, models []byteclawconfig.ModelConfig) {
 	for i, model := range models {
 		row := i + 1
 		meta := []string{}
@@ -262,7 +263,7 @@ func refreshModelMenuFromState(menu *Menu, s *appState) {
 			Description: "Append a new model entry",
 			Action: func() {
 				s.addModel(
-					picoclawconfig.ModelConfig{ModelName: "new-model", Model: "openai/gpt-5.2"},
+					byteclawconfig.ModelConfig{ModelName: "new-model", Model: "openai/gpt-5.2"},
 				)
 				s.push(
 					fmt.Sprintf("model-%d", len(s.config.ModelList)-1),
@@ -271,7 +272,7 @@ func refreshModelMenuFromState(menu *Menu, s *appState) {
 			},
 		},
 	)
-	currentModel := strings.TrimSpace(s.config.Agents.Defaults.Model)
+	currentModel := strings.TrimSpace(s.config.Agents.Defaults.GetModelName())
 	for i := range s.config.ModelList {
 		index := i
 		model := s.config.ModelList[i]
@@ -300,14 +301,14 @@ func refreshModelMenuFromState(menu *Menu, s *appState) {
 	menu.applyItems(items)
 }
 
-func isModelValid(model picoclawconfig.ModelConfig) bool {
+func isModelValid(model byteclawconfig.ModelConfig) bool {
 	hasKey := strings.TrimSpace(model.APIKey) != "" ||
 		strings.TrimSpace(model.AuthMethod) == "oauth"
 	hasModel := strings.TrimSpace(model.Model) != ""
 	return hasKey && hasModel
 }
 
-func (s *appState) testModel(model *picoclawconfig.ModelConfig) {
+func (s *appState) testModel(model *byteclawconfig.ModelConfig) {
 	if model == nil {
 		return
 	}

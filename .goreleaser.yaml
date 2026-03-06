@@ -18,10 +18,10 @@ builds:
       - stdjson
     ldflags:
       - -s -w
-      - -X github.com/ajmaluk/byteclaw/cmd/picoclaw/internal.version={{ .Version }}
-      - -X github.com/ajmaluk/byteclaw/cmd/picoclaw/internal.gitCommit={{ .ShortCommit }}
-      - -X github.com/ajmaluk/byteclaw/cmd/picoclaw/internal.buildTime={{ .Date }}
-      - -X github.com/ajmaluk/byteclaw/cmd/picoclaw/internal.goVersion={{ .Env.GOVERSION }}
+      - -X github.com/ajmaluk/byteclaw/cmd/byteclaw/internal.version={{ .Version }}
+      - -X github.com/ajmaluk/byteclaw/cmd/byteclaw/internal.gitCommit={{ .ShortCommit }}
+      - -X github.com/ajmaluk/byteclaw/cmd/byteclaw/internal.buildTime={{ .Date }}
+      - -X github.com/ajmaluk/byteclaw/cmd/byteclaw/internal.goVersion={{ .Env.GOVERSION }}
     goos:
       - linux
       - windows
